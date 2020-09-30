@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleData : MonoBehaviour
+[CreateAssetMenu()]
+public class ObstacleData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //The following 2 Vector2 is the range at which the obstacle can appear
+    //If any min == max in any axis, the obstacle can appear anywhere
+    public Vector2 minimumDistance = new Vector2(float.MinValue, 0);
+    public Vector2 maximumDistance = Vector2.zero;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObstacle obstaclePrefab;
 }

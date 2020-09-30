@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopVehicleData : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+//V0.11
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[CreateAssetMenu()]
+public class ShopVehicleData : ScriptableObject
+{
+    public string vehicleName;
+    //Stats of the object at level 1
+    public VehicleData baseStats;
+    //Cost of buying the object at level 1
+    public int baseCost;
+
+    //How much stats will change based on the upgrade
+    public VehicleData baseUpgradeStats;
+
+    //How much it'll cost upgrade to level 2
+    public int baseUpgradeCost;
+    public GameVehicle vehiclePrefab;
 }

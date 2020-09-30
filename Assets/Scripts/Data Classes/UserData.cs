@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//V0.1
+
 public class UserData : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static UserData instance;
+    public UserVehicleData currentVehicle = new UserVehicleData();
+    public UserBoosterData[] currentBoosters = new UserBoosterData[Constants.maxBoosterCount];
+    public int currentMoney = 0;
+    public int currentDay = 1;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        if(instance)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
     }
 }

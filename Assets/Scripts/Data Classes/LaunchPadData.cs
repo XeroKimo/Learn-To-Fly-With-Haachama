@@ -8,4 +8,20 @@ using UnityEngine;
 public struct LaunchPadData
 {
     public float power;
+
+    public static LaunchPadData operator +(LaunchPadData lh, LaunchPadData rh)
+    {
+        LaunchPadData data;
+        data.power = lh.power + rh.power;
+
+        return data;
+    }
+
+    public static LaunchPadData operator -(LaunchPadData lh, LaunchPadData rh)
+    {
+        LaunchPadData data;
+        data.power = lh.power - rh.power;
+
+        return data;
+    }
 }
