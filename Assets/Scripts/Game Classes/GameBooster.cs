@@ -24,9 +24,13 @@ public class GameBooster : MonoBehaviour
         this.initialStats = data;
     }
 
-    public void UserBooster(Rigidbody2D rigidbody)
+    public void UseBooster(Rigidbody2D rigidbody)
     {
-        //need to implement
+        //Reduce fuel at a constant rate
+        fuelRemaining = Mathf.Max(0, fuelRemaining - Constants.fuelConsumption * Time.deltaTime);
+
+        //Add force in the up direction
+        rigidbody.AddForce(rigidbody.transform.up * initialStats.power, ForceMode2D.Impulse);
     }
 
     public bool HasFuel()

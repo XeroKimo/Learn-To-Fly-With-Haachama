@@ -24,12 +24,17 @@ public class GameObstacle : MonoBehaviour
 
     public void SetObstacle(GameObstacle newObstacle)
     {
-        //need to implement
+        boxCollider.size = newObstacle.boxCollider.size;
+        rigidBody.mass = newObstacle.rigidBody.mass;
+        sprite.sprite = newObstacle.sprite.sprite;
+
+        rigidBody.angularVelocity = 0;
+        rigidBody.velocity = Vector3.zero;
     }
 
     public void SetPosition(Vector2 NewPosition)
     {
-        //need to implement
+        transform.position = NewPosition;
     }
 
     public Collider2D GetCollider()
