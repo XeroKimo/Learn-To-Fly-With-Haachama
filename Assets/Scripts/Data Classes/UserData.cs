@@ -9,6 +9,7 @@ public class UserData : MonoBehaviour
     public static UserData instance;
     public UserVehicleData currentVehicle = new UserVehicleData();
     public UserBoosterData[] currentBoosters = new UserBoosterData[Constants.maxBoosterCount];
+    public UserLaunchPadData currentLaunchPad = new UserLaunchPadData();
     public int currentMoney = 0;
     public int currentDay = 1;
 
@@ -21,5 +22,6 @@ public class UserData : MonoBehaviour
         }
 
         instance = this;
+        DontDestroyOnLoad(this);
     }
 }

@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//V0.11
+
 public class GameLaunchPad : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    LaunchPadData stats;
+    SpriteRenderer sprite;
+    Transform startingPoint;
+
+
+    public virtual void Initialize(LaunchPadData data, Player haachama)
     {
-        
+        stats = data;
+        haachama.transform.position = startingPoint.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Launch(Player haachama)
     {
-        
+        haachama.GetComponent<Rigidbody2D>().AddForce(Vector2.up * stats.power);
+        GameState.instance.SignalLaunched();
     }
 }
