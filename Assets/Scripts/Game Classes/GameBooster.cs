@@ -4,15 +4,51 @@ using UnityEngine;
 
 public class GameBooster : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private BoosterData initialStats;
+    private float fuelRemaining;
+    private SpriteRenderer sprite;
+
+    void Awake()
     {
-        
+        this.sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Initialize(BoosterData data)
+    {
+        this.initialStats = data;
+    }
+
+    public void UserBooster(Rigidbody2D rigidbody)
+    {
+        //need to implement
+    }
+
+    public bool HasFuel()
+    {
+        if (this.fuelRemaining > 0.0f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public float GetRemainingFuel()
+    {
+        return this.fuelRemaining;
+    }
+
+    public float GetFuelPercentage()
+    {
+        float result = this.fuelRemaining / this.initialStats.fuel; // return value between 0 and 1;
+        return result;
     }
 }
