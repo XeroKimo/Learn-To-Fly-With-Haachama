@@ -63,10 +63,8 @@ public class GameState : MonoBehaviour
 
     void Initialize()
     {
-        haachama.enabled = false;
         //Initialize Haachama
-
-        Debug.LogError("Haachama not initialized");
+        this.haachama.Initialize();
 
         //If there is a launchpad to spawn, spawn and initialize it
         ShopLaunchPadData launchPadPrefab = UserData.instance.currentLaunchPad.launchPad;
@@ -82,8 +80,7 @@ public class GameState : MonoBehaviour
 
         for(int i = 0; i < Constants.maxObstacles; i++)
         {
-            //Spawn a random obstacle 
-            Debug.LogError("Haachama not initialized");
+            
         }
     }
 
