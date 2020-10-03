@@ -55,4 +55,9 @@ public class GameBooster : MonoBehaviour
         float result = this.fuelRemaining / this.initialStats.fuel; // return value between 0 and 1;
         return result;
     }
+
+    public SpriteRenderer GetSprite()
+    {
+        return this.sprite;
+    }
 }

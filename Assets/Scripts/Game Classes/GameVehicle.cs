@@ -29,4 +29,9 @@ public class GameVehicle : MonoBehaviour
     {
         return this.colliderr;
     }
+
+    public SpriteRenderer GetSprite()
+    {
+        return this.sprite;
+    }
 }
