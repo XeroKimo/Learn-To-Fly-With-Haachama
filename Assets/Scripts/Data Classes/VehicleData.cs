@@ -9,6 +9,7 @@ public struct VehicleData
 {
     public float maximumSpeed;
     public float weight;
+    [Range(0, Constants.maxBoosterCount)]
     public int boosterSlots;
 
     public static VehicleData operator +(VehicleData lh, VehicleData rh)
