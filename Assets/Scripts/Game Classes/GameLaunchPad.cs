@@ -22,4 +22,9 @@ public class GameLaunchPad : MonoBehaviour
         haachama.GetComponent<Rigidbody2D>().AddForce(Vector2.up * stats.power);
         GameState.instance.SignalLaunched();
     }
+
+    public SpriteRenderer GetSprite()
+    {
+        return this.sprite;
+    }
 }
