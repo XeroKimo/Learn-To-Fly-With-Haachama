@@ -17,17 +17,26 @@ public class UserVehicleSlotUI : MonoBehaviour
 
     public void UpdateData(UserVehicleData data)
     {
-        if(oldVehicleData != data)
+        if(data.vehicle.vehicleName == "Default")
         {
-            //display.sprite = data.vehicle.vehiclePrefab.Get
+            display.sprite = data.vehicle.vehiclePrefab.GetComponent<SpriteRenderer>().sprite;
+            vehicleName.text = "Haachama";
+            level.text = "";
         }
+        else if(oldVehicleData != data)
+        {
+            display.sprite = data.vehicle.vehiclePrefab.GetComponent<SpriteRenderer>().sprite;
+            vehicleName.text = data.vehicle.vehicleName;
+            level.text = "Level " + data.currentLevel;
+        }
+        oldVehicleData = data;
     }
 
     public void OpenMenu()
     {
-        if(oldVehicleData.vehicle)
-            ShopMenu.instance.OpenUpgradeMenu(ShopTag.Vehicle);
-        else
+        if(oldVehicleData.vehicle.vehicleName == "Default")
             ShopMenu.instance.OpenShopMenu(ShopTag.Vehicle);
+        else
+            ShopMenu.instance.OpenUpgradeMenu(ShopTag.Vehicle);
     }
 }

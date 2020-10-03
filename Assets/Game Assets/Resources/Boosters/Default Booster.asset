@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84118a992df3bdd469054f13886192c1, type: 3}
+  m_Name: Default Booster
+  m_EditorClassIdentifier: 
+  boosterName: Default
+  baseStats:
+    power: 0
+    fuel: 0
+    weight: 0
+  baseCost: 0
+  baseUpgradeStats:
+    power: 0
+    fuel: 0
+    weight: 0
+  baseUpgradeCost: 0
+  boosterPrefab: {fileID: 6221387145137670698, guid: 103d871655cdc9643b643bfc99f60116,
+    type: 3}

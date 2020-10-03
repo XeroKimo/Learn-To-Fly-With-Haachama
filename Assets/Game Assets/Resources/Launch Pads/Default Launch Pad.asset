@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8c951531c5f174e87194026d3fa686, type: 3}
+  m_Name: Default Launch Pad
+  m_EditorClassIdentifier: 
+  launchPadName: Default
+  baseStats:
+    power: 0
+  baseCost: 0
+  baseUpgradeStats:
+    power: 0
+  baseUpgradeCost: 0
+  launchPadPrefab: {fileID: 7803642168812829058, guid: eb2a0437f946589458355212ce4460a7,
+    type: 3}

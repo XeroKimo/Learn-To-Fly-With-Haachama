@@ -2,16 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//V0.14
+//V0.15
 
 public struct UserVehicleData
 {
-    public ShopVehicleData vehicle;
-    public VehicleData currentStats;
-    public int currentLevel;
-    public int totalCost;
-    public int nextLevelCost;
-    public int previousLevelCost;
+    public ShopVehicleData vehicle { get; private set; }
+    public VehicleData currentStats { get; private set; }
+    public int currentLevel { get; private set; }
+    public int totalCost { get; private set; }
+    public int nextLevelCost { get; private set; }
+    public int previousLevelCost { get; private set; }
+
+    public void SetVehicleData(ShopVehicleData vehicle)
+    {
+        this.vehicle = vehicle;
+        currentStats = vehicle.baseStats;
+        currentLevel = 0;
+        totalCost = vehicle.baseCost;
+        previousLevelCost = 0;
+        nextLevelCost = vehicle.baseUpgradeCost;
+    }
+
+    public void Upgrade()
+    {
+        Debug.LogError("Not implemented");
+    }
+
+    public void Downgrade()
+    {
+        Debug.LogError("Not implemented");
+    }
 
     public override bool Equals(object obj)
     {
@@ -28,13 +48,13 @@ public struct UserVehicleData
         return hashCode;
     }
 
-    public static bool operator==(UserVehicleData lh, UserVehicleData rh)
+    public static bool operator ==(UserVehicleData lh, UserVehicleData rh)
     {
         return lh.vehicle == rh.vehicle &&
             lh.currentLevel == rh.currentLevel;
-    }    
-    
-    public static bool operator!=(UserVehicleData lh, UserVehicleData rh)
+    }
+
+    public static bool operator !=(UserVehicleData lh, UserVehicleData rh)
     {
         return !(lh == rh);
     }

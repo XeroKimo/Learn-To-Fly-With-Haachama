@@ -28,7 +28,7 @@ public class ShopMenu : MonoBehaviour
     [SerializeField]
     UserBoosterSlotUI[] boosterSlots = new UserBoosterSlotUI[Constants.maxBoosterCount];
     [SerializeField]
-    UserLaunchPadSlotUI launchPadSLot;
+    UserLaunchPadSlotUI launchPadSlot;
 
     [SerializeField]
     UpgradeMenu upgradeMenu;
@@ -48,7 +48,11 @@ public class ShopMenu : MonoBehaviour
 
     public void Start()
     {
-        dayText.text = "Day " + UserData.instance.currentDay;
+        for(int i = 0; i < Constants.maxBoosterCount; i++)
+        {
+            boosterSlots[i].UpdateData(UserData.instance.currentBoosters[i]);
+        }
+        NotifyChangesMade();
     }
 
     public void NotifyChangesMade()
@@ -56,9 +60,14 @@ public class ShopMenu : MonoBehaviour
         UserData user = UserData.instance;
 
         //Call update on user scripts
+        vehicleSlot.UpdateData(user.currentVehicle);
+        for(int i = 0; i < user.currentVehicle.currentStats.boosterSlots; i++)
+        {
+            boosterSlots[i].UpdateData(user.currentBoosters[i]);
+        }
+        launchPadSlot.UpdateData(user.currentLaunchPad);
 
         cashText.text = "$" + user.currentMoney;
-
         float weight = user.currentVehicle.currentStats.weight;
         for(int i = 0; i < user.currentVehicle.currentStats.boosterSlots; i++)
         {

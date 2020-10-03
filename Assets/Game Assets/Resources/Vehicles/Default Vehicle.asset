@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2782bc096c62b4e8fb85c23d93b5b2, type: 3}
+  m_Name: Default Vehicle
+  m_EditorClassIdentifier: 
+  vehicleName: Default
+  baseStats:
+    maximumSpeed: 6
+    weight: 2
+    boosterSlots: 1
+  baseCost: 0
+  baseUpgradeStats:
+    maximumSpeed: 0
+    weight: 0
+    boosterSlots: 0
+  baseUpgradeCost: 0
+  vehiclePrefab: {fileID: 1989295618855007781, guid: fa1a837f0e198db4e9687f53fad7fd2d,
+    type: 3}

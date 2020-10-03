@@ -8,6 +8,7 @@ public class GameLaunchPad : MonoBehaviour
 {
     LaunchPadData stats;
     SpriteRenderer sprite;
+    [SerializeField]
     Transform startingPoint;
 
 

@@ -13,4 +13,6 @@ public static class Constants
     public const float metre = 1.0f;
     public const float kilometre = metre * 1000.0f;
     public const float distanceToJapan = 6821.0f * kilometre;
+
+    public const int defaultStartingCash = 50;
 }
