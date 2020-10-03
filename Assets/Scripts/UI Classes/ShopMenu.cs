@@ -12,6 +12,8 @@ public enum ShopTag
     Booster_3
 };
 
+//V0.11
+
 public class ShopMenu : MonoBehaviour
 {
     public static ShopMenu instance;
@@ -112,5 +114,13 @@ public class ShopMenu : MonoBehaviour
         launchPadShop.gameObject.SetActive(false);
         boosterShop.gameObject.SetActive(false);
         upgradeMenu.gameObject.SetActive(true);
+    }
+
+    public void CloseShop()
+    {
+        vehicleShop.gameObject.SetActive(false);
+        launchPadShop.gameObject.SetActive(false);
+        boosterShop.gameObject.SetActive(false);
+        upgradeMenu.gameObject.SetActive(false);
     }
 }

@@ -20,7 +20,7 @@ public class UserBoosterSlotUI : MonoBehaviour
 
     public void UpdateData(UserBoosterData data)
     {
-        if(data.booster.boosterName == "Default")
+        if(data.booster.boosterName == Constants.defaultBoosterName)
         {
             display.sprite = data.booster.boosterPrefab.GetComponent<SpriteRenderer>().sprite;
             boosterName.text = "Empty";
@@ -37,7 +37,7 @@ public class UserBoosterSlotUI : MonoBehaviour
 
     public void OpenMenu()
     {
-        if(oldBoosterData.booster.boosterName == "Default")
+        if(oldBoosterData.booster.boosterName == Constants.defaultBoosterName)
         {
             switch(boosterSlot)
             {

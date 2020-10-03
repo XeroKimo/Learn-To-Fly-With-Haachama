@@ -1,18 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+//V0.1
 
 public class ShopLaunchPadUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    ShopLaunchPadData data;
+    [SerializeField]
+    Image display;
+    [SerializeField]
+    TextMeshProUGUI nameText;
+    [SerializeField]
+    TextMeshProUGUI costText;
+
+    public void SetData(ShopLaunchPadData data)
     {
-        
+        this.data = data;
+        display.sprite = data.launchPadPrefab.GetComponent<SpriteRenderer>().sprite;
+        nameText.text = data.launchPadName;
+        costText.text = data.baseCost.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DisplayRelativeCost(int cost)
     {
-        
+        costText.text = "$" + (cost - data.baseCost).ToString();
     }
+
+    public ShopLaunchPadData GetData() { return data; }
 }

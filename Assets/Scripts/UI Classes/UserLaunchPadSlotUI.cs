@@ -17,7 +17,7 @@ public class UserLaunchPadSlotUI : MonoBehaviour
 
     public void UpdateData(UserLaunchPadData data)
     {
-        if(data.launchPad.launchPadName == "Default")
+        if(data.launchPad.launchPadName == Constants.defaultLaunchPadName)
         {
             display.sprite = data.launchPad.launchPadPrefab.GetComponent<SpriteRenderer>().sprite;
             launchPadName.text = "Empty";
@@ -34,7 +34,7 @@ public class UserLaunchPadSlotUI : MonoBehaviour
 
     public void OpenMenu()
     {
-        if(oldLaunchPadData.launchPad.launchPadName == "Default")
+        if(oldLaunchPadData.launchPad.launchPadName == Constants.defaultLaunchPadName)
             ShopMenu.instance.OpenShopMenu(ShopTag.LaunchPad);
         else
             ShopMenu.instance.OpenUpgradeMenu(ShopTag.LaunchPad);

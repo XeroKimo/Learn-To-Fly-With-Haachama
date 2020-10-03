@@ -17,7 +17,7 @@ public class UserVehicleSlotUI : MonoBehaviour
 
     public void UpdateData(UserVehicleData data)
     {
-        if(data.vehicle.vehicleName == "Default")
+        if(data.vehicle.vehicleName == Constants.defaultVehicleName)
         {
             display.sprite = data.vehicle.vehiclePrefab.GetComponent<SpriteRenderer>().sprite;
             vehicleName.text = "Haachama";
@@ -34,7 +34,7 @@ public class UserVehicleSlotUI : MonoBehaviour
 
     public void OpenMenu()
     {
-        if(oldVehicleData.vehicle.vehicleName == "Default")
+        if(oldVehicleData.vehicle.vehicleName == Constants.defaultVehicleName)
             ShopMenu.instance.OpenShopMenu(ShopTag.Vehicle);
         else
             ShopMenu.instance.OpenUpgradeMenu(ShopTag.Vehicle);
