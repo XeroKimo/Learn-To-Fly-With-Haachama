@@ -63,10 +63,8 @@ public class GameState : MonoBehaviour
 
     void Initialize()
     {
-        haachama.enabled = false;
         //Initialize Haachama
-
-        Debug.LogError("Haachama not initialized");
+        this.haachama.Initialize();
 
         //If there is a launchpad to spawn, spawn and initialize it
         ShopLaunchPadData launchPadPrefab = UserData.instance.currentLaunchPad.launchPad;
@@ -82,8 +80,7 @@ public class GameState : MonoBehaviour
 
         for(int i = 0; i < Constants.maxObstacles; i++)
         {
-            //Spawn a random obstacle 
-            Debug.LogError("Haachama not initialized");
+            //Initialize gameObstacles and activeObstacles
         }
     }
 
@@ -109,14 +106,28 @@ public class GameState : MonoBehaviour
         currentState = ProgressState.InAir;
     }
 
+    //I have no idea if I understood your goal for that one Xero, hope I did
+    //if I didn't, sorry about that, I made it at 2AM, I barely can't keep my eyes open :O
     public void SignalObstacleOutOfRange(GameObstacle obstacle)
     {
-        //Randomly select a new obstacle
-        //Randomly generate a new position
-        //Copy over the new obstacle data to obstacle
-        //Set obstacle's position to the new position
+        for (int i = 0; i < Constants.maxObstacles; i++)
+        {
+            if (obstacle == activeObstacles[i])
+            {
+                //Randomly select a new obstacle
+                int rand = Random.Range(0, gameObstacles.Count);
+                GameObstacle newObstacle = gameObstacles[rand].obstaclePrefab;
 
-        Debug.LogError("Not implemented");
+                //Randomly generate a new position
+                Vector2 newPosition = gameObstacles[rand].maximumDistance - gameObstacles[rand].minimumDistance;
+
+                //Copy over the new obstacle data to obstacle
+                activeObstacles[i].SetObstacle(newObstacle);
+
+                //Set obstacle's position to the new position
+                activeObstacles[i].SetPosition(newPosition);
+            }
+        }
     }
 
     bool HaachamaCrashed()

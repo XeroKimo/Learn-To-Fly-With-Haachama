@@ -14,12 +14,6 @@ public class GameVehicle : MonoBehaviour
         this.sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Initialize(VehicleData data)
     {
         this.stats = data;

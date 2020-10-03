@@ -18,5 +18,5 @@ public class ShopBoosterData : ScriptableObject
 
     //How much it'll cost upgrade to level 2
     public int baseUpgradeCost;
-    public GameBooster launchPadPrefab;
+    public GameBooster boosterPrefab;
 }
