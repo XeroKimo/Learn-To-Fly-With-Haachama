@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPadName: Default
   baseStats:
-    power: 0
+    power: 2000
   baseCost: 0
   baseUpgradeStats:
     power: 0

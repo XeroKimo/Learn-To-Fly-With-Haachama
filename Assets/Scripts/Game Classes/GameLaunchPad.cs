@@ -29,4 +29,9 @@ public class GameLaunchPad : MonoBehaviour
     {
         return this.sprite;
     }
+
+    public LaunchPadData GetStats()
+    {
+        return stats;
+    }
 }

@@ -51,7 +51,8 @@ public class GameState : MonoBehaviour
             haachama.enabled = true;
 
             Debug.LogWarning("Testing launching of Haachama");
-            haachama.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.7071f, 0.7071f) * 20, ForceMode2D.Impulse);
+            int degree = 45;
+            haachama.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad)) * launchPad.GetStats().power, ForceMode2D.Impulse);
             Invoke("SignalLaunched", 1f);
         }
     }
@@ -86,7 +87,7 @@ public class GameState : MonoBehaviour
         Vector2 detectorPos = obstacleDetector.transform.position;
         Vector2 detectorHalfSize = obstacleDetector.GetSize() / 2;
 
-
+        
         Debug.Assert(gameObstacles.Count > 0);
         for(int i = 0; i < Constants.maxObstacles; i++)
         {
@@ -129,8 +130,6 @@ public class GameState : MonoBehaviour
         currentState = ProgressState.InAir;
     }
 
-    //I have no idea if I understood your goal for that one Xero, hope I did
-    //if I didn't, sorry about that, I made it at 2AM, I barely can't keep my eyes open :O
     public void SignalObstacleOutOfRange(GameObstacle obstacle)
     {
         obstacle.SetObstacle(gameObstacles[Random.Range(0, gameObstacles.Count - 1)].obstaclePrefab);

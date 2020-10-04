@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
             }
         }
 
+        //set limit speed of the player
         if(rb.velocity.sqrMagnitude >= vehicle.GetStats().maximumSpeed * vehicle.GetStats().maximumSpeed)
         {
             rb.velocity = rb.velocity.normalized * vehicle.GetStats().maximumSpeed;
