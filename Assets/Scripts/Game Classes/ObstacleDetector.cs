@@ -28,12 +28,23 @@ public class ObstacleDetector : MonoBehaviour
             transform.position = trackingObject.position;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Enter " + other.name);
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("Exit " + collision.name);
         GameObstacle obstacle = collision.GetComponent<GameObstacle>();
         if(obstacle)
         {
             GameState.instance.SignalObstacleOutOfRange(obstacle);
         }
+    }
+
+    public Vector2 GetSize()
+    {
+        return boxCollider.size;
     }
 }

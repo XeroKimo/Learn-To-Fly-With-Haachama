@@ -770,7 +770,7 @@ GameObject:
   - component: {fileID: 319601681}
   - component: {fileID: 319601680}
   m_Layer: 0
-  m_Name: New Game Object
+  m_Name: Start Game Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

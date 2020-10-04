@@ -20,7 +20,6 @@ public class GameState : MonoBehaviour
     GameLaunchPad launchPad;
 
     List<ObstacleData> gameObstacles;
-    List<GameObstacle> activeObstacles;
 
     [SerializeField]
     ObstacleDetector obstacleDetector;
@@ -32,13 +31,13 @@ public class GameState : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        currentState = ProgressState.Initializing; Debug.Log(currentState);
+        currentState = ProgressState.Initializing;
+        gameObstacles = new List<ObstacleData>(Resources.LoadAll<ObstacleData>("Obstacles"));
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(currentState);
         Initialize();
         currentState = ProgressState.Launching;
 
@@ -60,7 +59,6 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentState);
         if(currentState == ProgressState.InAir)
         {
             if(HaachamaCrashed() || HaachamaWin())
@@ -85,10 +83,20 @@ public class GameState : MonoBehaviour
         obstacleDetector.TrackGameObject(haachama.gameObject);
         trackingCamera.TrackGameObject(haachama.gameObject);
 
+        Vector2 detectorPos = obstacleDetector.transform.position;
+        Vector2 detectorHalfSize = obstacleDetector.GetSize() / 2;
 
+
+        Debug.Assert(gameObstacles.Count > 0);
         for(int i = 0; i < Constants.maxObstacles; i++)
         {
             //Initialize gameObstacles and activeObstacles
+            GameObstacle obstacle = Instantiate(gameObstacles[Random.Range(0, gameObstacles.Count - 1)].obstaclePrefab);
+
+            float xPos = Random.Range(detectorPos.x - detectorHalfSize.x, detectorPos.x + detectorHalfSize.x);
+            float yPos = Random.Range(Mathf.Max(0, detectorPos.y - detectorHalfSize.y), detectorPos.y + detectorHalfSize.y);
+            yPos = Mathf.Clamp(yPos, 0, float.MaxValue);
+            obstacle.SetPosition(new Vector2(xPos, yPos));
         }
     }
 
@@ -108,7 +116,7 @@ public class GameState : MonoBehaviour
         }
 
         Debug.LogWarning("Testing returning to Shop Menu");
-        UserData.instance.currentMoney += (int)haachama.transform.position.x;
+        UserData.instance.currentMoney += Mathf.Max(0, (int)haachama.transform.position.x);
         UserData.instance.currentDay += 1;
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
@@ -125,24 +133,13 @@ public class GameState : MonoBehaviour
     //if I didn't, sorry about that, I made it at 2AM, I barely can't keep my eyes open :O
     public void SignalObstacleOutOfRange(GameObstacle obstacle)
     {
-        for (int i = 0; i < Constants.maxObstacles; i++)
-        {
-            if (obstacle == activeObstacles[i])
-            {
-                //Randomly select a new obstacle
-                int rand = Random.Range(0, gameObstacles.Count);
-                GameObstacle newObstacle = gameObstacles[rand].obstaclePrefab;
+        obstacle.SetObstacle(gameObstacles[Random.Range(0, gameObstacles.Count - 1)].obstaclePrefab);
 
-                //Randomly generate a new position
-                Vector2 newPosition = gameObstacles[rand].maximumDistance - gameObstacles[rand].minimumDistance;
-
-                //Copy over the new obstacle data to obstacle
-                activeObstacles[i].SetObstacle(newObstacle);
-
-                //Set obstacle's position to the new position
-                activeObstacles[i].SetPosition(newPosition);
-            }
-        }
+        Vector2 detectorPos = obstacleDetector.transform.position;
+        Vector2 detectorHalfSize = obstacleDetector.GetSize() / 2;
+        float xPos = Random.Range(detectorPos.x - detectorHalfSize.x, detectorPos.x + detectorHalfSize.x);
+        float yPos = Random.Range(Mathf.Max(0, detectorPos.y - detectorHalfSize.y), detectorPos.y + detectorHalfSize.y);
+        obstacle.SetPosition(new Vector2(xPos, yPos));
     }
 
     bool HaachamaCrashed()

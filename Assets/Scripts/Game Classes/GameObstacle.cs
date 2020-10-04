@@ -17,6 +17,9 @@ public class GameObstacle : MonoBehaviour
         this.boxCollider = gameObject.GetComponent<BoxCollider2D>();
         this.rigidBody = gameObject.GetComponent<Rigidbody2D>();
         this.sprite = gameObject.GetComponent<SpriteRenderer>();
+
+        rigidBody.gravityScale = 0;
+        rigidBody.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -27,9 +30,9 @@ public class GameObstacle : MonoBehaviour
 
     public void SetObstacle(GameObstacle newObstacle)
     {
-        boxCollider.size = newObstacle.boxCollider.size;
-        rigidBody.mass = newObstacle.rigidBody.mass;
-        sprite.sprite = newObstacle.sprite.sprite;
+        boxCollider.size = (newObstacle.boxCollider) ? newObstacle.boxCollider.size : newObstacle.GetComponent<BoxCollider2D>().size;
+        rigidBody.mass = (newObstacle.rigidBody) ? newObstacle.rigidBody.mass : newObstacle.GetComponent<Rigidbody2D>().mass;
+        sprite.sprite = (newObstacle.sprite) ? newObstacle.sprite.sprite : newObstacle.GetComponent<SpriteRenderer>().sprite;
 
         rigidBody.angularVelocity = 0;
         rigidBody.velocity = Vector3.zero;
