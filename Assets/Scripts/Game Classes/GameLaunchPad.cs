@@ -4,6 +4,7 @@ using UnityEngine;
 
 //V0.11
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class GameLaunchPad : MonoBehaviour
 {
     LaunchPadData stats;
