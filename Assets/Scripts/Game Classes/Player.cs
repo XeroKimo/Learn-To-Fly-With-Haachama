@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     private GameVehicle vehicle;
     private GameBooster[] boosters;
     private GameBooster activeBooster;
@@ -24,15 +23,32 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(activeBooster)
         {
-            rb.AddForce(new Vector2(5, 10), ForceMode2D.Impulse);
-            rb.AddTorque(-2, ForceMode2D.Impulse);
+            activeBooster.UseBooster(rb);
+
+            if(!activeBooster.HasFuel())
+            {
+                rb.mass -= activeBooster.GetStats().weight;
+                activeBooster = GetNextBooster();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if(rb.velocity.sqrMagnitude >= vehicle.GetStats().maximumSpeed * vehicle.GetStats().maximumSpeed)
         {
-            this.activeBooster.UseBooster(this.rb);
+            rb.velocity = rb.velocity.normalized * vehicle.GetStats().maximumSpeed;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(Input.GetKey(KeyCode.D))
+        {
+            rb.AddTorque(-1);
+        }
+        if(Input.GetKey(KeyCode.A))
+        {
+            rb.AddTorque(1);
         }
     }
 
@@ -40,23 +56,34 @@ public class Player : MonoBehaviour
     {
         //check if there's a vehicle, if yes then initialize
         ShopVehicleData vPrefab = UserData.instance.currentVehicle.vehicle;
-        if (vPrefab)
+
+        this.vehicle = Instantiate(vPrefab.vehiclePrefab, transform);
+        this.vehicle.Initialize(UserData.instance.currentVehicle.currentStats);
+        rb.mass = vehicle.GetStats().weight;
+
+
+        int boosterCount = vehicle.GetStats().boosterSlots;
+        boosters = new GameBooster[boosterCount];
+
+        for(int i = 0; i < vehicle.GetStats().boosterSlots; i++)
         {
-            this.vehicle = Instantiate(vPrefab.vehiclePrefab);
-            this.vehicle.Initialize(UserData.instance.currentVehicle.currentStats);
+            //might need to do a if here in case of less booster than the max
+            boosters[i] = Instantiate(UserData.instance.currentBoosters[i].booster.boosterPrefab, vehicle.transform);
+            boosters[i].Initialize(UserData.instance.currentBoosters[i].currentStats);
+            rb.mass += boosters[i].GetStats().weight;
         }
 
-        //check if there's is boosters, if yes then initialize
-        ShopBoosterData bPrefab = UserData.instance.currentBoosters[0].booster;
-        if (bPrefab)
+        if(vehicle.GetStats().boosterSlots > 0)
+            activeBooster = boosters[0];
+    }
+
+    GameBooster GetNextBooster()
+    {
+        foreach(GameBooster booster in boosters)
         {
-            for (int i = 0; i < UserData.instance.currentBoosters.Length; i++)
-            {
-                //might need to do a if here in case of less booster than the max
-                this.boosters[i].Initialize(UserData.instance.currentBoosters[i].currentStats);
-            }
-            this.boosters[0] = Instantiate(bPrefab.boosterPrefab);
-            this.activeBooster = this.boosters[0];
+            if(booster.HasFuel())
+                return booster;
         }
+        return null;
     }
 }

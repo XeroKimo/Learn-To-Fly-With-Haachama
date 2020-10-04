@@ -60,4 +60,9 @@ public class GameBooster : MonoBehaviour
     {
         return this.sprite;
     }
+
+    public BoosterData GetStats()
+    {
+        return initialStats;
+    }
 }

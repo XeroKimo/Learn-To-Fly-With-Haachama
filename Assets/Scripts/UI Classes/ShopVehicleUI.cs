@@ -26,7 +26,7 @@ public class ShopVehicleUI : MonoBehaviour
 
     public void DisplayRelativeCost(int cost)
     {
-        costText.text = "$" + (cost - data.baseCost).ToString();
+        costText.text = "$" + (data.baseCost - cost).ToString();
     }
 
     public ShopVehicleData GetData() { return data; }

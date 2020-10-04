@@ -26,7 +26,7 @@ public class ShopBoosterUI : MonoBehaviour
 
     public void DisplayRelativeCost(int cost)
     {
-        costText.text = "$" + (cost - data.baseCost).ToString();
+        costText.text = "$" + (data.baseCost - cost).ToString();
     }
 
     public ShopBoosterData GetData() { return data; }
