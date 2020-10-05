@@ -31,8 +31,6 @@ public class EndDayUI : MonoBehaviour, IPointerClickHandler
                 UserData.instance.currentMoney += Mathf.Max(0, (int)GameState.instance.GetPlayer().transform.position.x);
                 UserData.instance.currentDay += 1;
 
-                Time.timeScale = 1;
-                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
                 SceneManager.LoadScene(1);
                 Time.timeScale = 1;
             }
