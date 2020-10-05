@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public enum ProgressState
@@ -54,6 +55,8 @@ public class GameState : MonoBehaviour
             int degree = 45;
             haachama.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad)) * launchPad.GetStats().power, ForceMode2D.Impulse);
             Invoke("SignalLaunched", 1f);
+
+            //EditorApplication.isPaused = true;
         }
     }
 

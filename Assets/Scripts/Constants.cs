@@ -5,14 +5,14 @@ using UnityEngine;
 
 public static class Constants
 {
-    public const int maxObstacles = 5;
+    public const int maxObstacles = 30;
     public const int maxBoosterCount = 3;
 
     public const float fuelConsumption = 1;
 
     public const float metre = 1.0f;
     public const float kilometre = metre * 1000.0f;
-    public const float distanceToJapan = 6821.0f * kilometre;
+    public const float distanceToJapan = 6821.0f * metre;
 
     public const int defaultStartingCash = 50;
 

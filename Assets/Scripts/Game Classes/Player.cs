@@ -10,10 +10,6 @@ public class Player : MonoBehaviour
     private GameBooster activeBooster;
     private Rigidbody2D rb;
 
-    //Temporary
-    public Camera mainCamera;
-    private bool spaceOnce = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,12 +29,6 @@ public class Player : MonoBehaviour
                 activeBooster = GetNextBooster();
             }
         }
-
-        //set limit speed of the player
-        if(rb.velocity.sqrMagnitude >= vehicle.GetStats().maximumSpeed * vehicle.GetStats().maximumSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * vehicle.GetStats().maximumSpeed;
-        }
     }
 
     private void FixedUpdate()
@@ -51,6 +41,11 @@ public class Player : MonoBehaviour
         {
             rb.AddTorque(1);
         }
+
+
+        //Some drag equation that doesn't exceed 1, but approaching 1 gets tougher the closer we get to it
+        float basedSpeed = vehicle.GetStats().maximumSpeed * Constants.metre * 10;
+        rb.drag = (1.005f - basedSpeed / (basedSpeed + rb.velocity.magnitude)) * 2;
     }
 
     public void Initialize()
