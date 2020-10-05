@@ -16,7 +16,7 @@ public struct UserBoosterData
     {
         this.booster = booster;
         currentStats = booster.baseStats;
-        currentLevel = 0;
+        currentLevel = 1;
         totalCost = booster.baseCost;
         previousLevelCost = 0;
         nextLevelCost = booster.baseUpgradeCost;
@@ -24,12 +24,25 @@ public struct UserBoosterData
 
     public void Upgrade()
     {
-        Debug.LogError("Not implemented");
+        if(currentLevel < Constants.maxUpgradeLevel)
+        {
+            currentLevel++;
+            totalCost += nextLevelCost;
+            currentStats += booster.baseUpgradeStats;
+            previousLevelCost = nextLevelCost;
+        }
     }
 
     public void Downgrade()
     {
-        Debug.LogError("Not implemented");
+        if(currentLevel > 1)
+        {
+            currentLevel--;
+            totalCost += nextLevelCost;
+            currentStats -= booster.baseUpgradeStats;
+            if(currentLevel == 1)
+                previousLevelCost = 0;
+        }
     }
 
     public override bool Equals(object obj)

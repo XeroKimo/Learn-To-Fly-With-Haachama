@@ -16,7 +16,7 @@ public struct UserLaunchPadData
     {
         this.launchPad = launchPad;
         currentStats = launchPad.baseStats;
-        currentLevel = 0;
+        currentLevel = 1;
         totalCost = launchPad.baseCost;
         previousLevelCost = 0;
         nextLevelCost = launchPad.baseUpgradeCost;
@@ -24,12 +24,25 @@ public struct UserLaunchPadData
 
     public void Upgrade()
     {
-        Debug.LogError("Not implemented");
+        if(currentLevel < Constants.maxUpgradeLevel)
+        {
+            currentLevel++;
+            totalCost += nextLevelCost;
+            currentStats += launchPad.baseUpgradeStats;
+            previousLevelCost = nextLevelCost;
+        }
     }
 
     public void Downgrade()
     {
-        Debug.LogError("Not implemented");
+        if(currentLevel > 1)
+        {
+            currentLevel--;
+            totalCost += nextLevelCost;
+            currentStats -= launchPad.baseUpgradeStats;
+            if(currentLevel == 1)
+                previousLevelCost = 0;
+        }
     }
 
     public override bool Equals(object obj)

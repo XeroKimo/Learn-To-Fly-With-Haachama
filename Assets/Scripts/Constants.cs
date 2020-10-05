@@ -16,6 +16,8 @@ public static class Constants
 
     public const int defaultStartingCash = 50;
 
+    public const int maxUpgradeLevel = 10;
+
     public const string defaultBoosterName = "Default";
     public const string defaultVehicleName = "Default";
     public const string defaultLaunchPadName = "Default";

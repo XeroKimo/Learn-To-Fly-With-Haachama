@@ -17,7 +17,7 @@ public struct UserVehicleData
     {
         this.vehicle = vehicle;
         currentStats = vehicle.baseStats;
-        currentLevel = 0;
+        currentLevel = 1;
         totalCost = vehicle.baseCost;
         previousLevelCost = 0;
         nextLevelCost = vehicle.baseUpgradeCost;
@@ -25,12 +25,25 @@ public struct UserVehicleData
 
     public void Upgrade()
     {
-        Debug.LogError("Not implemented");
+        if(currentLevel < Constants.maxUpgradeLevel)
+        {
+            currentLevel++;
+            totalCost += nextLevelCost;
+            currentStats += vehicle.baseUpgradeStats;
+            previousLevelCost = nextLevelCost;
+        }
     }
 
     public void Downgrade()
     {
-        Debug.LogError("Not implemented");
+        if(currentLevel > 1)
+        {
+            currentLevel--;
+            totalCost += nextLevelCost;
+            currentStats -= vehicle.baseUpgradeStats;
+            if(currentLevel == 1)
+                previousLevelCost = 0;
+        }
     }
 
     public override bool Equals(object obj)
