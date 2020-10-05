@@ -10,6 +10,7 @@ public class LaunchPadShop : MonoBehaviour
     public RectTransform content;
     public ShopLaunchPadUI prefab;
     List<ShopLaunchPadData> ShopLaunchPadDatas;
+    public TMPro.TextMeshProUGUI contentText;
 
     private void Awake()
     {
@@ -22,7 +23,23 @@ public class LaunchPadShop : MonoBehaviour
             ShopLaunchPadUI spawnedObject = Instantiate(prefab, content);
             spawnedObject.SetData(data);
             spawnedObject.GetComponent<Button>().onClick.AddListener(() => { Buy(spawnedObject); });
+            MouseOverlapComponent overlap = spawnedObject.GetComponent<MouseOverlapComponent>();
+
+            overlap.PointerEnterEvent += Overlap_PointerEnterEvent;
+            overlap.PointerExitEvent += Overlap_PointerExitEvent;
         }
+    }
+
+    private void Overlap_PointerEnterEvent(UnityEngine.EventSystems.PointerEventData obj)
+    {
+        ShopLaunchPadData data = obj.pointerCurrentRaycast.gameObject.GetComponent<ShopLaunchPadUI>().GetData();
+        contentText.text = "Power: " + data.baseStats.power;
+    }
+
+    private void Overlap_PointerExitEvent(UnityEngine.EventSystems.PointerEventData obj)
+    {
+
+        contentText.text = "";
     }
 
     public void OnEnable()

@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 6446028649992257547}
   - component: {fileID: 6446028649992257548}
   - component: {fileID: 6446028649992257551}
+  - component: {fileID: -7098140007482386199}
   m_Layer: 5
   m_Name: Shop Vehicle Button
   m_TagString: Untagged
@@ -523,3 +524,15 @@ MonoBehaviour:
   display: {fileID: 534447453951458287}
   nameText: {fileID: 534447453803036760}
   costText: {fileID: 534447454842483845}
+--- !u!114 &-7098140007482386199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6446028649992257550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0edee20171ccb42a3b4d0f03de163d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

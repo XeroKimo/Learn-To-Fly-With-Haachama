@@ -48,9 +48,9 @@ public class EndDayUI : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            resultsDisplayed = true;
             resultsPanel.SetActive(true);
-            moneyEarned.text = "$" + ((int)(GameState.instance.GetPlayer().transform.position.x)).ToString();
+            resultsDisplayed = true;
         }
+        moneyEarned.text = "$" + ((int)(GameState.instance.GetPlayer().transform.position.x)).ToString();
     }
 }

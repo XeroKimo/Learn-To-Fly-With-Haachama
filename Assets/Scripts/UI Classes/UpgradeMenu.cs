@@ -20,11 +20,6 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI downgradeCostText;
 
-    public void OnEnable()
-    {
-        RefreshDisplay();
-    }
-
     public void Upgrade()
     {
         ShopTag tag = ShopMenu.instance.shopTag;
@@ -49,6 +44,7 @@ public class UpgradeMenu : MonoBehaviour
         }
 
         RefreshDisplay();
+        ShopMenu.instance.NotifyChangesMade();
     }
 
     public void Downgrade()
@@ -75,6 +71,7 @@ public class UpgradeMenu : MonoBehaviour
         }
 
         RefreshDisplay();
+        ShopMenu.instance.NotifyChangesMade();
     }
 
     public void Sell()
@@ -82,7 +79,7 @@ public class UpgradeMenu : MonoBehaviour
         ShopMenu.instance.OpenShopMenu(ShopMenu.instance.shopTag);
     }
 
-    private void RefreshDisplay()
+    public void RefreshDisplay()
     {
         ShopTag tag = ShopMenu.instance.shopTag;
 
@@ -94,7 +91,9 @@ public class UpgradeMenu : MonoBehaviour
             itemName.text = vehicleData.vehicle.vehicleName;
             display.sprite = vehicleData.vehicle.vehiclePrefab.GetComponent<SpriteRenderer>().sprite;
             upgradeText.text =
-                "Max Speed: " + vehicleData.currentStats.maximumSpeed;
+                "Max Speed: " + vehicleData.currentStats.maximumSpeed +
+                "\nBooster Slots: " + vehicleData.currentStats.boosterSlots +
+                "\nWeight: " + vehicleData.currentStats.weight + "kg";
             break;
         case ShopTag.LaunchPad:
             UserLaunchPadData launchPadData = UserData.instance.currentLaunchPad;
@@ -110,8 +109,9 @@ public class UpgradeMenu : MonoBehaviour
             itemName.text = boosterData.booster.boosterName;
             display.sprite = boosterData.booster.boosterPrefab.GetComponent<SpriteRenderer>().sprite;
             upgradeText.text =
-                "Power: " + boosterData.currentStats.power + "\n" +
-                "Fuel: " + boosterData.currentStats.fuel;
+                "Power: " + boosterData.currentStats.power +
+                "\nFuel: " + boosterData.currentStats.fuel +
+                "\nWeight: " + boosterData.currentStats.weight + "kg";
             break;
         case ShopTag.Booster_2:
             boosterData = UserData.instance.currentBoosters[1];
@@ -119,8 +119,9 @@ public class UpgradeMenu : MonoBehaviour
             itemName.text = boosterData.booster.boosterName;
             display.sprite = boosterData.booster.boosterPrefab.GetComponent<SpriteRenderer>().sprite;
             upgradeText.text =
-                "Power: " + boosterData.currentStats.power + "\n" +
-                "Fuel: " + boosterData.currentStats.fuel;
+                "Power: " + boosterData.currentStats.power +
+                "\nFuel: " + boosterData.currentStats.fuel +
+                "\nWeight: " + boosterData.currentStats.weight + "kg";
             break;
         case ShopTag.Booster_3:
             boosterData = UserData.instance.currentBoosters[2];
@@ -128,8 +129,9 @@ public class UpgradeMenu : MonoBehaviour
             itemName.text = boosterData.booster.boosterName;
             display.sprite = boosterData.booster.boosterPrefab.GetComponent<SpriteRenderer>().sprite;
             upgradeText.text =
-                "Power: " + boosterData.currentStats.power + "\n" +
-                "Fuel: " + boosterData.currentStats.fuel;
+                "Power: " + boosterData.currentStats.power + 
+                "\nFuel: " + boosterData.currentStats.fuel +
+                "\nWeight: " + boosterData.currentStats.weight + "kg";
             break;
         }
     }

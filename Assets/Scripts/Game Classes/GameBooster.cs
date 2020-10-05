@@ -23,6 +23,7 @@ public class GameBooster : MonoBehaviour
     public void Initialize(BoosterData data)
     {
         this.initialStats = data;
+        fuelRemaining = data.fuel;
     }
 
     public void UseBooster(Rigidbody2D rigidbody)
@@ -31,7 +32,7 @@ public class GameBooster : MonoBehaviour
         fuelRemaining = Mathf.Max(0, fuelRemaining - Constants.fuelConsumption * Time.deltaTime);
 
         //Add force in the up direction
-        rigidbody.AddForce(rigidbody.transform.up * initialStats.power, ForceMode2D.Impulse);
+        rigidbody.AddForce(rigidbody.transform.up * initialStats.power);
     }
 
     public bool HasFuel()

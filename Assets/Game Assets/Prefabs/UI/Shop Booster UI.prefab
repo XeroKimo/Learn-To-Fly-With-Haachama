@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 7745630373260440847}
   - component: {fileID: 7745630373260440846}
   - component: {fileID: 7745630373260440845}
+  - component: {fileID: 8231882871033577821}
   m_Layer: 5
   m_Name: Shop Booster UI
   m_TagString: Untagged
@@ -293,6 +294,18 @@ MonoBehaviour:
   display: {fileID: 7745630373839573326}
   nameText: {fileID: 7745630373580825968}
   costText: {fileID: 7745630371997381488}
+--- !u!114 &8231882871033577821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7745630373260440883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0edee20171ccb42a3b4d0f03de163d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7745630373580825974
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class VehicleShop : MonoBehaviour
     public RectTransform content;
     public ShopVehicleUI prefab;
     List<ShopVehicleData> shopVehicleDatas;
+    public TMPro.TextMeshProUGUI contentText;
 
     private void Awake()
     {
@@ -22,7 +23,26 @@ public class VehicleShop : MonoBehaviour
             ShopVehicleUI spawnedObject = Instantiate(prefab, content);
             spawnedObject.SetData(data);
             spawnedObject.GetComponent<Button>().onClick.AddListener(()=> { Buy(spawnedObject); });
+            MouseOverlapComponent overlap = spawnedObject.GetComponent<MouseOverlapComponent>();
+
+            overlap.PointerEnterEvent += Overlap_PointerEnterEvent;
+            overlap.PointerExitEvent += Overlap_PointerExitEvent;
         }
+    }
+
+    private void Overlap_PointerEnterEvent(UnityEngine.EventSystems.PointerEventData obj)
+    {
+        
+        ShopVehicleData vehicleData = obj.pointerCurrentRaycast.gameObject.GetComponent<ShopVehicleUI>().GetData();
+        contentText.text =
+    "Max Speed: " + vehicleData.baseStats.maximumSpeed +
+    "\nBooster Slots: " + vehicleData.baseStats.boosterSlots +
+    "\nWeight: " + vehicleData.baseStats.weight + "kg";
+    }
+
+    private void Overlap_PointerExitEvent(UnityEngine.EventSystems.PointerEventData obj)
+    {
+        contentText.text = "";
     }
 
     public void OnEnable()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public enum ShopTag
 {
@@ -63,9 +64,10 @@ public class ShopMenu : MonoBehaviour
 
         //Call update on user scripts
         vehicleSlot.UpdateData(user.currentVehicle);
-        for(int i = 0; i < user.currentVehicle.currentStats.boosterSlots; i++)
+        for(int i = 0; i < Constants.maxBoosterCount; i++)
         {
             boosterSlots[i].UpdateData(user.currentBoosters[i]);
+            boosterSlots[i].GetComponent<Button>().interactable = i < user.currentVehicle.currentStats.boosterSlots;
         }
         launchPadSlot.UpdateData(user.currentLaunchPad);
 
@@ -108,6 +110,7 @@ public class ShopMenu : MonoBehaviour
 
     public void OpenUpgradeMenu(ShopTag shopTag)
     {
+        upgradeMenu.RefreshDisplay();
         this.shopTag = shopTag;
 
         vehicleShop.gameObject.SetActive(false);

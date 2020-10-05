@@ -19,6 +19,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    private void FixedUpdate()
+    {
+        if(Input.GetKey(KeyCode.D))
+        {
+            rb.AddTorque(-2 *  rb.mass);
+        }
+        if(Input.GetKey(KeyCode.A))
+        {
+            rb.AddTorque(2 * rb.mass);
+        }
+
+
         if(activeBooster)
         {
             activeBooster.UseBooster(rb);
@@ -29,20 +43,6 @@ public class Player : MonoBehaviour
                 activeBooster = GetNextBooster();
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if(Input.GetKey(KeyCode.D))
-        {
-            rb.AddTorque(-1);
-        }
-        if(Input.GetKey(KeyCode.A))
-        {
-            rb.AddTorque(1);
-        }
-
-
         //Some drag equation that doesn't exceed 1, but approaching 1 gets tougher the closer we get to it
         float basedSpeed = vehicle.GetStats().maximumSpeed * Constants.metre * 10;
         rb.drag = (1.005f - basedSpeed / (basedSpeed + rb.velocity.magnitude)) * 2;
@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
 
         for(int i = 0; i < vehicle.GetStats().boosterSlots; i++)
         {
+            Debug.Log("Booster intiailized");
             //might need to do a if here in case of less booster than the max
             boosters[i] = Instantiate(UserData.instance.currentBoosters[i].booster.boosterPrefab, vehicle.transform);
             boosters[i].Initialize(UserData.instance.currentBoosters[i].currentStats);
@@ -86,5 +87,12 @@ public class Player : MonoBehaviour
     public Rigidbody2D GetRigidbody()
     {
         return rb;
+    }
+
+    public bool HasFuelLeft()
+    {
+        if(activeBooster)
+            return activeBooster.HasFuel();
+        return false;
     }
 }

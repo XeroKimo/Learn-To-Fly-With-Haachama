@@ -67,7 +67,7 @@ public class GameState : MonoBehaviour
     {
         if(currentState == ProgressState.InAir)
         {
-            if(HaachamaCrashed() || HaachamaWin())
+            if(HaachamaCrashed() || HaachamaWin() || HaachamaNoProgress())
             {
                 EndGame();
             }
@@ -154,6 +154,11 @@ public class GameState : MonoBehaviour
     bool HaachamaWin()
     {
         return haachama.transform.position.x >= Constants.distanceToJapan;
+    }
+
+    bool HaachamaNoProgress()
+    {
+        return !haachama.HasFuelLeft() && haachama.GetRigidbody().velocity.x < 0.5f;
     }
 
     public Player GetPlayer()

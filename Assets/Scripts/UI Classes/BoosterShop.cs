@@ -10,6 +10,7 @@ public class BoosterShop : MonoBehaviour
     public RectTransform content;
     public ShopBoosterUI prefab;
     List<ShopBoosterData> ShopBoosterDatas;
+    public TMPro.TextMeshProUGUI contentText;
 
     private void Awake()
     {
@@ -22,7 +23,25 @@ public class BoosterShop : MonoBehaviour
             ShopBoosterUI spawnedObject = Instantiate(prefab, content);
             spawnedObject.SetData(data);
             spawnedObject.GetComponent<Button>().onClick.AddListener(() => { Buy(spawnedObject); });
+            MouseOverlapComponent overlap = spawnedObject.GetComponent<MouseOverlapComponent>();
+
+            overlap.PointerEnterEvent += Overlap_PointerEnterEvent;
+            overlap.PointerExitEvent += Overlap_PointerExitEvent;
         }
+    }
+
+    private void Overlap_PointerEnterEvent(UnityEngine.EventSystems.PointerEventData obj)
+    {
+        ShopBoosterData boosterData = obj.pointerCurrentRaycast.gameObject.GetComponent<ShopBoosterUI>().GetData();
+        contentText.text =
+    "Power: " + boosterData.baseStats.power +
+    "\nFuel: " + boosterData.baseStats.fuel +
+    "\nWeight: " + boosterData.baseStats.weight + "kg";
+    }
+
+    private void Overlap_PointerExitEvent(UnityEngine.EventSystems.PointerEventData obj)
+    {
+        contentText.text = "";
     }
 
     public void OnEnable()
