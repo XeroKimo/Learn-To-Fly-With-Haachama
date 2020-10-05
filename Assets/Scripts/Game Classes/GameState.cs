@@ -26,6 +26,8 @@ public class GameState : MonoBehaviour
     ObstacleDetector obstacleDetector;
     [SerializeField]
     TrackingCamera trackingCamera;
+    [SerializeField]
+    EndDayUI endDay;
 
     ProgressState currentState = ProgressState.Initializing;
 
@@ -67,7 +69,7 @@ public class GameState : MonoBehaviour
         {
             if(HaachamaCrashed() || HaachamaWin())
             {
-                OnGameEnd();
+                EndGame();
             }
         }
     }
@@ -104,27 +106,27 @@ public class GameState : MonoBehaviour
         }
     }
 
+    public void EndGame()
+    {
+        OnGameEnd();
+    }
+
     void OnGameEnd()
     {
+        Time.timeScale = 0;
+
         currentState = ProgressState.End;
 
         if(HaachamaWin())
         {
-            //Display end game visual
-            Debug.LogError("Not implemented");
+            endDay.gameObject.SetActive(true);
+            endDay.DisplayResults(true);
         }
         else
         {
-            //Call whoever should be handling a game end status
-            Debug.LogError("Not implemented");
+            endDay.gameObject.SetActive(true);
+            endDay.DisplayResults(false);
         }
-
-        Debug.LogWarning("Testing returning to Shop Menu");
-        UserData.instance.currentMoney += Mathf.Max(0, (int)haachama.transform.position.x);
-        UserData.instance.currentDay += 1;
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
-
     }
 
     public void SignalLaunched()
@@ -152,5 +154,10 @@ public class GameState : MonoBehaviour
     bool HaachamaWin()
     {
         return haachama.transform.position.x >= Constants.distanceToJapan;
+    }
+
+    public Player GetPlayer()
+    {
+        return haachama;
     }
 }

@@ -82,4 +82,9 @@ public class Player : MonoBehaviour
         }
         return null;
     }
+
+    public Rigidbody2D GetRigidbody()
+    {
+        return rb;
+    }
 }
