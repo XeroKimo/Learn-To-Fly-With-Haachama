@@ -38,7 +38,7 @@ public struct UserLaunchPadData
         if(currentLevel > 1)
         {
             currentLevel--;
-            totalCost += nextLevelCost;
+            totalCost -= previousLevelCost;
             currentStats -= launchPad.baseUpgradeStats;
             if(currentLevel == 1)
                 previousLevelCost = 0;

@@ -163,24 +163,32 @@ public class UpgradeMenu : MonoBehaviour
     {
         ShopTag tag = ShopMenu.instance.shopTag;
 
+        int upgradeCost = 0;
         switch(tag)
         {
         case ShopTag.Vehicle:
+            upgradeCost = UserData.instance.currentVehicle.nextLevelCost;
             UserData.instance.currentVehicle.Upgrade();
             break;
         case ShopTag.LaunchPad:
+            upgradeCost = UserData.instance.currentLaunchPad.nextLevelCost;
             UserData.instance.currentLaunchPad.Upgrade();
             break;
         case ShopTag.Booster_1:
+            upgradeCost = UserData.instance.currentBoosters[0].nextLevelCost;
             UserData.instance.currentBoosters[0].Upgrade();
             break;
         case ShopTag.Booster_2:
+            upgradeCost = UserData.instance.currentBoosters[1].nextLevelCost;
             UserData.instance.currentBoosters[1].Upgrade();
             break;
         case ShopTag.Booster_3:
+            upgradeCost = UserData.instance.currentBoosters[2].nextLevelCost;
             UserData.instance.currentBoosters[2].Upgrade();
             break;
         }
+
+        UserData.instance.currentMoney -= upgradeCost;
 
         RefreshDisplay();
         ShopMenu.instance.NotifyChangesMade();
@@ -190,24 +198,32 @@ public class UpgradeMenu : MonoBehaviour
     {
         ShopTag tag = ShopMenu.instance.shopTag;
 
+        int downgradeCost = 0;
         switch(tag)
         {
         case ShopTag.Vehicle:
+            downgradeCost = UserData.instance.currentVehicle.previousLevelCost;
             UserData.instance.currentVehicle.Downgrade();
             break;
         case ShopTag.LaunchPad:
+            downgradeCost = UserData.instance.currentLaunchPad.previousLevelCost;
             UserData.instance.currentLaunchPad.Downgrade();
             break;
         case ShopTag.Booster_1:
+            downgradeCost = UserData.instance.currentBoosters[0].previousLevelCost;
             UserData.instance.currentBoosters[0].Downgrade();
             break;
         case ShopTag.Booster_2:
+            downgradeCost = UserData.instance.currentBoosters[1].previousLevelCost;
             UserData.instance.currentBoosters[1].Downgrade();
             break;
         case ShopTag.Booster_3:
+            downgradeCost = UserData.instance.currentBoosters[2].previousLevelCost;
             UserData.instance.currentBoosters[2].Downgrade();
             break;
         }
+
+        UserData.instance.currentMoney += downgradeCost;
 
         RefreshDisplay();
         ShopMenu.instance.NotifyChangesMade();

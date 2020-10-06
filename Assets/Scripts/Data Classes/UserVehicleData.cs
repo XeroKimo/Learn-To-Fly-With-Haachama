@@ -39,8 +39,9 @@ public struct UserVehicleData
         if(currentLevel > 1)
         {
             currentLevel--;
-            totalCost += nextLevelCost;
+            totalCost -= previousLevelCost;
             currentStats -= vehicle.baseUpgradeStats;
+            nextLevelCost = previousLevelCost;
             if(currentLevel == 1)
                 previousLevelCost = 0;
         }

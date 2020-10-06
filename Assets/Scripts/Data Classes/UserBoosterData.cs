@@ -38,7 +38,7 @@ public struct UserBoosterData
         if(currentLevel > 1)
         {
             currentLevel--;
-            totalCost += nextLevelCost;
+            totalCost -= previousLevelCost;
             currentStats -= booster.baseUpgradeStats;
             if(currentLevel == 1)
                 previousLevelCost = 0;
