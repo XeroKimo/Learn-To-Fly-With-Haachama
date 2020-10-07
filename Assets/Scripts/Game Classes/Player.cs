@@ -102,4 +102,20 @@ public class Player : MonoBehaviour
             return activeBooster.HasFuel();
         return false;
     }
+
+    public int GetBoostersRemaining()
+    {
+        int boosterCount = 0;
+        for(int i = 0; i < vehicle.GetStats().boosterSlots; i++)
+        {
+            if(boosters[i].HasFuel())
+                boosterCount++;
+        }
+        return Mathf.Max(boosterCount - 1, 0);
+    }
+
+    public GameBooster GetActiveBooster()
+    {
+        return activeBooster;
+    }
 }

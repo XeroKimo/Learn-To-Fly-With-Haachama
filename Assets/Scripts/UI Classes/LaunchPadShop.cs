@@ -50,13 +50,13 @@ public class LaunchPadShop : MonoBehaviour
     {
         foreach(Transform child in content)
         {
-            child.GetComponent<ShopLaunchPadUI>().DisplayRelativeCost(UserData.instance.currentVehicle.totalCost);
+            child.GetComponent<ShopLaunchPadUI>().DisplayRelativeCost(UserData.instance.currentLaunchPad.totalCost);
         }
     }
 
     public void Buy(ShopLaunchPadUI launchPad)
     {
-        int currentCost = UserData.instance.currentVehicle.totalCost;
+        int currentCost = UserData.instance.currentLaunchPad.totalCost;
 
         if(launchPad.GetData().baseCost - currentCost > UserData.instance.currentMoney)
             return;

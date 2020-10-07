@@ -15,6 +15,11 @@ public class GameUI : MonoBehaviour
     TextMeshProUGUI speed;
     [SerializeField]
     TextMeshProUGUI distance;
+    [SerializeField]
+    TextMeshProUGUI boostersRemaining;
+    [SerializeField]
+    TextMeshProUGUI fuelRemaining;
+
 
     [SerializeField]
     GameObject pauseMenu;
@@ -34,7 +39,8 @@ public class GameUI : MonoBehaviour
         drag.text = player.GetRigidbody().drag.ToString("F3");
         speed.text = player.GetRigidbody().velocity.magnitude.ToString("F0");
         distance.text = player.transform.position.x.ToString("F0") + "m";
-
+        boostersRemaining.text = player.GetBoostersRemaining().ToString();
+        fuelRemaining.text = (player.GetActiveBooster()) ? (player.GetActiveBooster().GetFuelPercentage() * 100).ToString("F0") + "%" : "0%";
     }
 
     public void PauseGame()
