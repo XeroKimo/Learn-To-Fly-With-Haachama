@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Vehicle
+    uniqueID: 3386571843
+    locked: 0
+  - name: Booster
+    uniqueID: 1556435295
+    locked: 0

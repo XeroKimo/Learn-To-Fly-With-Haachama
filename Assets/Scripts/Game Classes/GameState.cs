@@ -148,7 +148,7 @@ public class GameState : MonoBehaviour
 
     bool HaachamaCrashed()
     {
-        return haachama.transform.position.y <= 0;
+        return haachama.transform.position.y <= 0 && !haachama.HasFuelLeft();
     }
 
     bool HaachamaWin()

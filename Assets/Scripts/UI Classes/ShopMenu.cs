@@ -110,8 +110,8 @@ public class ShopMenu : MonoBehaviour
 
     public void OpenUpgradeMenu(ShopTag shopTag)
     {
-        upgradeMenu.RefreshDisplay();
         this.shopTag = shopTag;
+        upgradeMenu.RefreshDisplay();
 
         vehicleShop.gameObject.SetActive(false);
         launchPadShop.gameObject.SetActive(false);

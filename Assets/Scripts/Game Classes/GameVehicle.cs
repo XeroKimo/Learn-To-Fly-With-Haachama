@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(SpriteRenderer))]
 public class GameVehicle : MonoBehaviour
 {
     private VehicleData stats;
     private Collider2D colliderr;
     private SpriteRenderer sprite;
+
+    [SerializeField]
+    Transform boosterSlot;
 
     void Awake()
     {
@@ -35,5 +37,9 @@ public class GameVehicle : MonoBehaviour
     public SpriteRenderer GetSprite()
     {
         return this.sprite;
+    }
+    public Transform GetBoosterSlot()
+    {
+        return boosterSlot;
     }
 }

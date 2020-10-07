@@ -188,6 +188,9 @@ public class UpgradeMenu : MonoBehaviour
             break;
         }
 
+        if(upgradeCost > UserData.instance.currentMoney)
+            return;
+
         UserData.instance.currentMoney -= upgradeCost;
 
         RefreshDisplay();
@@ -250,7 +253,7 @@ public class UpgradeMenu : MonoBehaviour
             UserVehicleData vehicleData = UserData.instance.currentVehicle;
 
             itemName.text = vehicleData.vehicle.vehicleName;
-            display.sprite = vehicleData.vehicle.vehiclePrefab.GetComponent<SpriteRenderer>().sprite;
+            display.sprite = vehicleData.vehicle.displaySprite;
             upgradeText.text = originalText = 
                 "Max Speed: " + vehicleData.currentStats.maximumSpeed +
                 "\nBooster Slots: " + vehicleData.currentStats.boosterSlots +
@@ -267,7 +270,7 @@ public class UpgradeMenu : MonoBehaviour
             UserLaunchPadData launchPadData = UserData.instance.currentLaunchPad;
 
             itemName.text = launchPadData.launchPad.launchPadName;
-            display.sprite = launchPadData.launchPad.launchPadPrefab.GetComponent<SpriteRenderer>().sprite;
+            display.sprite = launchPadData.launchPad.displaySprite;
             upgradeText.text = originalText =
                 "Power: " + launchPadData.currentStats.power;
 
@@ -282,7 +285,7 @@ public class UpgradeMenu : MonoBehaviour
             UserBoosterData boosterData = UserData.instance.currentBoosters[0];
 
             itemName.text = boosterData.booster.boosterName;
-            display.sprite = boosterData.booster.boosterPrefab.GetComponent<SpriteRenderer>().sprite;
+            display.sprite = boosterData.booster.displaySprite;
             upgradeText.text = originalText =
                 "Power: " + boosterData.currentStats.power +
                 "\nFuel: " + boosterData.currentStats.fuel +
@@ -299,7 +302,7 @@ public class UpgradeMenu : MonoBehaviour
             boosterData = UserData.instance.currentBoosters[1];
 
             itemName.text = boosterData.booster.boosterName;
-            display.sprite = boosterData.booster.boosterPrefab.GetComponent<SpriteRenderer>().sprite;
+            display.sprite = boosterData.booster.displaySprite;
             upgradeText.text = originalText =
                 "Power: " + boosterData.currentStats.power +
                 "\nFuel: " + boosterData.currentStats.fuel +
@@ -317,7 +320,7 @@ public class UpgradeMenu : MonoBehaviour
 
             levelText.text = boosterData.currentLevel.ToString() + "/" + Constants.maxUpgradeLevel.ToString();
             itemName.text = boosterData.booster.boosterName;
-            display.sprite = boosterData.booster.boosterPrefab.GetComponent<SpriteRenderer>().sprite;
+            display.sprite = boosterData.booster.displaySprite;
 
             upgradeText.text =originalText = 
                 "Power: " + boosterData.currentStats.power + 

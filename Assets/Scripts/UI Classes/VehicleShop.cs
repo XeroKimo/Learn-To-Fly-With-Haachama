@@ -32,7 +32,10 @@ public class VehicleShop : MonoBehaviour
 
     private void Overlap_PointerEnterEvent(UnityEngine.EventSystems.PointerEventData obj)
     {
-        
+        if(!obj.pointerCurrentRaycast.gameObject)
+            return;
+        if(!obj.pointerCurrentRaycast.gameObject.GetComponent<ShopVehicleUI>())
+            return;
         ShopVehicleData vehicleData = obj.pointerCurrentRaycast.gameObject.GetComponent<ShopVehicleUI>().GetData();
         contentText.text =
     "Max Speed: " + vehicleData.baseStats.maximumSpeed +
@@ -57,7 +60,9 @@ public class VehicleShop : MonoBehaviour
     {
         int currentCost = UserData.instance.currentVehicle.totalCost;
 
-        UserData.instance.currentMoney += currentCost - vehicle.GetData().baseCost;
+        if(vehicle.GetData().baseCost - currentCost > UserData.instance.currentMoney)
+            return;
+        UserData.instance.currentMoney -= vehicle.GetData().baseCost - currentCost;
         UserData.instance.currentVehicle.SetVehicleData(vehicle.GetData());
 
         ShopMenu.instance.NotifyChangesMade();

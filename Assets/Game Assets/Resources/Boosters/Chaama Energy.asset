@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84118a992df3bdd469054f13886192c1, type: 3}
-  m_Name: Test Booster
+  m_Name: Chaama Energy
   m_EditorClassIdentifier: 
-  boosterName: Test
+  boosterName: Chaama Energy
   baseStats:
-    power: 100
-    fuel: 10000
-    weight: 3
-  baseCost: 10
+    power: 300
+    fuel: 50
+    weight: 5
+  baseCost: 200
   baseUpgradeStats:
-    power: 3
-    fuel: 1
-    weight: 0
-  baseUpgradeCost: 0
-  boosterPrefab: {fileID: 6221387145137670698, guid: 103d871655cdc9643b643bfc99f60116,
+    power: 100
+    fuel: 25
+    weight: 2.5
+  baseUpgradeCost: 50
+  boosterPrefab: {fileID: -2683389880737336160, guid: ba2db4fdfb2c86646847a09b202d55a7,
     type: 3}
+  displaySprite: {fileID: 21300000, guid: 362eefe2e06a10e418cf492e2a500366, type: 3}

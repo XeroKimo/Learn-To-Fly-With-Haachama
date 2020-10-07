@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03a952935c1029546aff558132efdd9d, type: 3}
-  m_Name: Test Obstacle
+  m_Name: Big Kusa
   m_EditorClassIdentifier: 
   minimumDistance: {x: -3.4028235e+38, y: 0}
   maximumDistance: {x: 0, y: 0}
-  obstaclePrefab: {fileID: 1514163034042958142, guid: 1a6689ebaf8f3f94d9b0898723cb93bc,
+  obstaclePrefab: {fileID: 541314738386405411, guid: 8f617000a5104c04281e08f5089e3c6a,
     type: 3}

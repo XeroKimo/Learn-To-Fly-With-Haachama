@@ -22,13 +22,13 @@ public class UserBoosterSlotUI : MonoBehaviour
     {
         if(data.booster.boosterName == Constants.defaultBoosterName)
         {
-            display.sprite = data.booster.boosterPrefab.GetComponent<SpriteRenderer>().sprite;
+            display.sprite = data.booster.displaySprite;
             boosterName.text = "Empty";
             level.text = "";
         }
         else if(oldBoosterData != data)
         {
-            display.sprite = data.booster.boosterPrefab.GetComponent<SpriteRenderer>().sprite;
+            display.sprite = data.booster.displaySprite;
             boosterName.text = data.booster.boosterName;
             level.text = "Level " + data.currentLevel;
         }

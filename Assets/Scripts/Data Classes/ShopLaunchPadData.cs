@@ -19,4 +19,6 @@ public class ShopLaunchPadData : ScriptableObject
     //How much it'll cost upgrade to level 2
     public int baseUpgradeCost;
     public GameLaunchPad launchPadPrefab;
+
+    public Sprite displaySprite;
 }

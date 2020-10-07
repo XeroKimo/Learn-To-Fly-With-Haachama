@@ -19,7 +19,7 @@ public class ShopLaunchPadUI : MonoBehaviour
     public void SetData(ShopLaunchPadData data)
     {
         this.data = data;
-        display.sprite = data.launchPadPrefab.GetComponent<SpriteRenderer>().sprite;
+        display.sprite = data.displaySprite;
         nameText.text = data.launchPadName;
         costText.text = data.baseCost.ToString();
     }

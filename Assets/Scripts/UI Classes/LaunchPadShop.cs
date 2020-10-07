@@ -32,6 +32,10 @@ public class LaunchPadShop : MonoBehaviour
 
     private void Overlap_PointerEnterEvent(UnityEngine.EventSystems.PointerEventData obj)
     {
+        if(!obj.pointerCurrentRaycast.gameObject)
+            return;
+        if(!obj.pointerCurrentRaycast.gameObject.GetComponent<ShopLaunchPadUI>())
+            return;
         ShopLaunchPadData data = obj.pointerCurrentRaycast.gameObject.GetComponent<ShopLaunchPadUI>().GetData();
         contentText.text = "Power: " + data.baseStats.power;
     }
@@ -54,7 +58,9 @@ public class LaunchPadShop : MonoBehaviour
     {
         int currentCost = UserData.instance.currentVehicle.totalCost;
 
-        UserData.instance.currentMoney += currentCost - launchPad.GetData().baseCost;
+        if(launchPad.GetData().baseCost - currentCost > UserData.instance.currentMoney)
+            return;
+        UserData.instance.currentMoney -= launchPad.GetData().baseCost - currentCost;
         UserData.instance.currentLaunchPad.SetLaunchPad(launchPad.GetData());
 
         ShopMenu.instance.NotifyChangesMade();

@@ -4,11 +4,13 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(SpriteRenderer))]
 public class GameObstacle : MonoBehaviour
 {
+    [SerializeField]
     private BoxCollider2D boxCollider;
+    [SerializeField]
     private Rigidbody2D rigidBody;
+    [SerializeField]
     private SpriteRenderer sprite;
 
     // Start is called before the first frame update
@@ -16,7 +18,6 @@ public class GameObstacle : MonoBehaviour
     {
         this.boxCollider = gameObject.GetComponent<BoxCollider2D>();
         this.rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        this.sprite = gameObject.GetComponent<SpriteRenderer>();
 
         rigidBody.gravityScale = 0;
         rigidBody.freezeRotation = true;
@@ -32,7 +33,7 @@ public class GameObstacle : MonoBehaviour
     {
         boxCollider.size = (newObstacle.boxCollider) ? newObstacle.boxCollider.size : newObstacle.GetComponent<BoxCollider2D>().size;
         rigidBody.mass = (newObstacle.rigidBody) ? newObstacle.rigidBody.mass : newObstacle.GetComponent<Rigidbody2D>().mass;
-        sprite.sprite = (newObstacle.sprite) ? newObstacle.sprite.sprite : newObstacle.GetComponent<SpriteRenderer>().sprite;
+        sprite.sprite = (newObstacle.sprite) ? newObstacle.sprite.sprite : newObstacle.GetComponentInChildren<SpriteRenderer>().sprite;
 
         rigidBody.angularVelocity = 0;
         rigidBody.velocity = Vector3.zero;

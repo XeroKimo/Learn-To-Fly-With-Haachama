@@ -19,7 +19,7 @@ public class ShopBoosterUI : MonoBehaviour
     public void SetData(ShopBoosterData data)
     {
         this.data = data;
-        display.sprite = data.boosterPrefab.GetComponent<SpriteRenderer>().sprite;
+        display.sprite = data.displaySprite;
         nameText.text = data.boosterName;
         costText.text = data.baseCost.ToString();
     }

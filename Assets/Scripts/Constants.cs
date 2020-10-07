@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class Constants
 {
-    public const int maxObstacles = 30;
+    public const int maxObstacles = 10;
     public const int maxBoosterCount = 3;
 
     public const float fuelConsumption = 1;

@@ -19,4 +19,6 @@ public class ShopVehicleData : ScriptableObject
     //How much it'll cost upgrade to level 2
     public int baseUpgradeCost;
     public GameVehicle vehiclePrefab;
+
+    public Sprite displaySprite;
 }

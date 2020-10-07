@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd2782bc096c62b4e8fb85c23d93b5b2, type: 3}
-  m_Name: Test Vehicle
+  m_Name: Paper Vehicle
   m_EditorClassIdentifier: 
-  vehicleName: Test
+  vehicleName: Paper Airplane
   baseStats:
-    maximumSpeed: 150
-    weight: 30
+    maximumSpeed: 300
+    weight: 5
     boosterSlots: 3
   baseCost: 1
   baseUpgradeStats:
-    maximumSpeed: 12
+    maximumSpeed: 50
     weight: 0
     boosterSlots: 0
   baseUpgradeCost: 1
-  vehiclePrefab: {fileID: 1989295618855007781, guid: fa1a837f0e198db4e9687f53fad7fd2d,
+  vehiclePrefab: {fileID: 4292134490253461621, guid: 825186fb0b9369541968cb605fbe58b8,
     type: 3}
+  displaySprite: {fileID: 21300000, guid: 8e86732da74922649b35cd7417479cf0, type: 3}

@@ -32,6 +32,10 @@ public class BoosterShop : MonoBehaviour
 
     private void Overlap_PointerEnterEvent(UnityEngine.EventSystems.PointerEventData obj)
     {
+        if(!obj.pointerCurrentRaycast.gameObject)
+            return;
+        if(!obj.pointerCurrentRaycast.gameObject.GetComponent<ShopBoosterUI>())
+            return;
         ShopBoosterData boosterData = obj.pointerCurrentRaycast.gameObject.GetComponent<ShopBoosterUI>().GetData();
         contentText.text =
     "Power: " + boosterData.baseStats.power +
@@ -89,7 +93,9 @@ public class BoosterShop : MonoBehaviour
             break;
         }
 
-        UserData.instance.currentMoney += currentCost - booster.GetData().baseCost;
+        if(booster.GetData().baseCost - currentCost > UserData.instance.currentMoney)
+            return;
+        UserData.instance.currentMoney -= booster.GetData().baseCost - currentCost;
 
         switch(ShopMenu.instance.shopTag)
         {

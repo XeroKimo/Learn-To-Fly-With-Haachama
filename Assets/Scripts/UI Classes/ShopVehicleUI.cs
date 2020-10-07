@@ -19,7 +19,7 @@ public class ShopVehicleUI : MonoBehaviour
     public void SetData(ShopVehicleData data)
     {
         this.data = data;
-        display.sprite = data.vehiclePrefab.GetComponent<SpriteRenderer>().sprite;
+        display.sprite = data.displaySprite;
         nameText.text = data.vehicleName;
         costText.text = data.baseCost.ToString();
     }

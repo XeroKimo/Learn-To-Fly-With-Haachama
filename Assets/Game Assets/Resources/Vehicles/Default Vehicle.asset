@@ -25,3 +25,4 @@ MonoBehaviour:
   baseUpgradeCost: 0
   vehiclePrefab: {fileID: 1989295618855007781, guid: fa1a837f0e198db4e9687f53fad7fd2d,
     type: 3}
+  displaySprite: {fileID: 21300000, guid: e723829b61db01b42a517e278cb98975, type: 3}

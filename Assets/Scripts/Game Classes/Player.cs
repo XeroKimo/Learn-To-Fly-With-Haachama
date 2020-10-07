@@ -39,8 +39,12 @@ public class Player : MonoBehaviour
 
             if(!activeBooster.HasFuel())
             {
+                activeBooster.gameObject.SetActive(false);
                 rb.mass -= activeBooster.GetStats().weight;
                 activeBooster = GetNextBooster();
+
+                if(activeBooster)
+                    activeBooster.gameObject.SetActive(true);
             }
         }
         //Some drag equation that doesn't exceed 1, but approaching 1 gets tougher the closer we get to it
@@ -63,15 +67,18 @@ public class Player : MonoBehaviour
 
         for(int i = 0; i < vehicle.GetStats().boosterSlots; i++)
         {
-            Debug.Log("Booster intiailized");
             //might need to do a if here in case of less booster than the max
-            boosters[i] = Instantiate(UserData.instance.currentBoosters[i].booster.boosterPrefab, vehicle.transform);
+            boosters[i] = Instantiate(UserData.instance.currentBoosters[i].booster.boosterPrefab, vehicle.GetBoosterSlot());
             boosters[i].Initialize(UserData.instance.currentBoosters[i].currentStats);
+            boosters[i].gameObject.SetActive(false);
             rb.mass += boosters[i].GetStats().weight;
         }
 
         if(vehicle.GetStats().boosterSlots > 0)
+        {
             activeBooster = boosters[0];
+            activeBooster.gameObject.SetActive(true);
+        }
     }
 
     GameBooster GetNextBooster()

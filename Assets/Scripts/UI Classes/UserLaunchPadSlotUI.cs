@@ -19,13 +19,13 @@ public class UserLaunchPadSlotUI : MonoBehaviour
     {
         if(data.launchPad.launchPadName == Constants.defaultLaunchPadName)
         {
-            display.sprite = data.launchPad.launchPadPrefab.GetComponent<SpriteRenderer>().sprite;
+            display.sprite = data.launchPad.displaySprite;
             launchPadName.text = "Empty";
             level.text = "";
         }
         else if(oldLaunchPadData != data)
         {
-            display.sprite = data.launchPad.launchPadPrefab.GetComponent<SpriteRenderer>().sprite;
+            display.sprite = data.launchPad.displaySprite;
             launchPadName.text = data.launchPad.launchPadName;
             level.text = "Level " + data.currentLevel;
         }

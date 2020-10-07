@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84118a992df3bdd469054f13886192c1, type: 3}
+  m_Name: Spicy Noodles
+  m_EditorClassIdentifier: 
+  boosterName: Spice Noodles
+  baseStats:
+    power: 100
+    fuel: 30
+    weight: 3
+  baseCost: 75
+  baseUpgradeStats:
+    power: 15
+    fuel: 10
+    weight: 0
+  baseUpgradeCost: 25
+  boosterPrefab: {fileID: 7453919882784732011, guid: eabcde34c8c468e4d9cda29528d67629,
+    type: 3}
+  displaySprite: {fileID: 21300000, guid: a53019e35f738dd42a2091137a57c63b, type: 3}
