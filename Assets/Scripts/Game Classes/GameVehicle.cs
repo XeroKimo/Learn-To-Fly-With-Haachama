@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameVehicle : MonoBehaviour
 {
     private VehicleData stats;
-    private Collider2D colliderr;
+    private Collider2D collider;
     private SpriteRenderer sprite;
 
     [SerializeField]
@@ -14,7 +14,7 @@ public class GameVehicle : MonoBehaviour
 
     void Awake()
     {
-        this.colliderr = gameObject.GetComponent<Collider2D>();
+        this.collider = gameObject.GetComponent<Collider2D>();
         this.sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
@@ -31,7 +31,7 @@ public class GameVehicle : MonoBehaviour
 
     public Collider2D GetCollider()
     {
-        return this.colliderr;
+        return this.collider;
     }
 
     public SpriteRenderer GetSprite()

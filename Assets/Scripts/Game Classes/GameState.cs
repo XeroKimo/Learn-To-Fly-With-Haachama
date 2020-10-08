@@ -47,15 +47,16 @@ public class GameState : MonoBehaviour
         if(UserData.instance.currentLaunchPad.launchPad.launchPadName != Constants.defaultLaunchPadName)
         {
             //Call launch
+            Debug.Log("Launched");
             launchPad.Launch(haachama);
         }
         else
         {
             haachama.enabled = true;
 
-            Debug.LogWarning("Testing launching of Haachama");
-            int degree = 45;
-            haachama.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad)) * launchPad.GetStats().power, ForceMode2D.Impulse);
+            //Debug.LogWarning("Testing launching of Haachama");
+            //int degree = 45;
+            //haachama.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad)) * launchPad.GetStats().power, ForceMode2D.Impulse);
             Invoke("SignalLaunched", 1f);
 
             //EditorApplication.isPaused = true;
@@ -82,7 +83,7 @@ public class GameState : MonoBehaviour
         //If there is a launchpad to spawn, spawn and initialize it
         ShopLaunchPadData launchPadPrefab = UserData.instance.currentLaunchPad.launchPad;
 
-        launchPad = Instantiate(launchPadPrefab.launchPadPrefab, Vector3.zero, Quaternion.identity);
+        launchPad = Instantiate(launchPadPrefab.launchPadPrefab);
         launchPad.Initialize(UserData.instance.currentLaunchPad.currentStats, haachama);
 
         //Have ObstacleDetector begin tracking Haachama

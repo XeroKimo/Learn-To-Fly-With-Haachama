@@ -16,13 +16,26 @@ public class GameLaunchPad : MonoBehaviour
     public virtual void Initialize(LaunchPadData data, Player haachama)
     {
         stats = data;
-        haachama.transform.position = startingPoint.position;
     }
 
     public virtual void Launch(Player haachama)
     {
-        haachama.GetComponent<Rigidbody2D>().AddForce(Vector2.up * stats.power);
+        haachama.transform.parent = startingPoint;
+        if(haachama.GetVehicle().GetCollider() is BoxCollider2D)
+        {
+            haachama.transform.localPosition = (haachama.GetVehicle().GetCollider() as BoxCollider2D).size / 2;
+        }
+        haachama.transform.parent = null;
+        
+        haachama.GetComponent<Rigidbody2D>().AddForce(transform.up * stats.power, ForceMode2D.Impulse);
+        //Invoke("SignalLaunched", 1f);
         GameState.instance.SignalLaunched();
+    }
+
+    void SignalLaunched()
+    {
+        GameState.instance.SignalLaunched();
+
     }
 
     public SpriteRenderer GetSprite()

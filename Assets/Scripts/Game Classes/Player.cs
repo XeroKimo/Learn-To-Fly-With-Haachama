@@ -118,4 +118,9 @@ public class Player : MonoBehaviour
     {
         return activeBooster;
     }
+
+    public GameVehicle GetVehicle()
+    {
+        return vehicle;
+    }
 }
