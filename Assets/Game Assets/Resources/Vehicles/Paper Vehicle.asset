@@ -17,12 +17,12 @@ MonoBehaviour:
     maximumSpeed: 150
     weight: 65
     boosterSlots: 3
-  baseCost: 1000
+  baseCost: 3000
   baseUpgradeStats:
     maximumSpeed: 100
     weight: 0
     boosterSlots: 0
-  baseUpgradeCost: 500
+  baseUpgradeCost: 1000
   vehiclePrefab: {fileID: 4292134490253461621, guid: 825186fb0b9369541968cb605fbe58b8,
     type: 3}
   displaySprite: {fileID: 21300000, guid: 8e86732da74922649b35cd7417479cf0, type: 3}

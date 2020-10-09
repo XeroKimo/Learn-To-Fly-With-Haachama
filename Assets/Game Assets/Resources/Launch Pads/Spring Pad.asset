@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPadName: Spring
   baseStats:
-    power: 500
+    power: 1100
   baseCost: 50
   baseUpgradeStats:
-    power: 10
-  baseUpgradeCost: 20
+    power: 300
+  baseUpgradeCost: 30
   launchPadPrefab: {fileID: 4195179549621660184, guid: 81484202058f0df42bba8b86a74d59f3,
     type: 3}
   displaySprite: {fileID: 21300000, guid: d6de731509fffa84ab8297d533642ee3, type: 3}

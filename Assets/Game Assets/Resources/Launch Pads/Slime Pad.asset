@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPadName: Slime
   baseStats:
-    power: 200
-  baseCost: 1000
+    power: 10000
+  baseCost: 1500
   baseUpgradeStats:
-    power: 50
-  baseUpgradeCost: 100
+    power: 2000
+  baseUpgradeCost: 1000
   launchPadPrefab: {fileID: 1359544327326102479, guid: feb451a0236c52343bbbad6faf3de188,
     type: 3}
   displaySprite: {fileID: 21300000, guid: 718de9aade904734b80d46ba06098285, type: 3}
