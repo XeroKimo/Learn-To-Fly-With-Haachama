@@ -23,6 +23,6 @@ MonoBehaviour:
     weight: 0
     boosterSlots: 0
   baseUpgradeCost: 150
-  vehiclePrefab: {fileID: 1989295618855007781, guid: fa1a837f0e198db4e9687f53fad7fd2d,
+  vehiclePrefab: {fileID: 6742656823709670968, guid: a1e3b8c4a40446a41a80153176991b47,
     type: 3}
-  displaySprite: {fileID: 21300000, guid: e723829b61db01b42a517e278cb98975, type: 3}
+  displaySprite: {fileID: 21300000, guid: c42f4d9d70ed54241ae832b9111d726c, type: 3}

@@ -7,6 +7,9 @@ using UnityEngine;
 public class ObstacleDetector : MonoBehaviour
 {
     BoxCollider2D boxCollider;
+    [SerializeField]
+    BoxCollider2D minimumCollider;
+
     Transform trackingObject;
 
 
@@ -40,5 +43,10 @@ public class ObstacleDetector : MonoBehaviour
     public Vector2 GetSize()
     {
         return boxCollider.size;
+    }
+
+    public Vector2 GetMinimumSize()
+    {
+        return minimumCollider.size;
     }
 }

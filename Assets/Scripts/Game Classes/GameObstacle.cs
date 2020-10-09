@@ -58,4 +58,16 @@ public class GameObstacle : MonoBehaviour
     {
         return this.sprite;
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+            Invoke("SignalOutOfRange", 0.1f);
+    }
+
+    void SignalOutOfRange()
+    {
+        GameState.instance.SignalObstacleOutOfRange(this);
+
+    }
 }

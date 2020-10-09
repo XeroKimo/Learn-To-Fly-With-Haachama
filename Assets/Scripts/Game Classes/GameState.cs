@@ -128,6 +128,8 @@ public class GameState : MonoBehaviour
             endDay.gameObject.SetActive(true);
             endDay.DisplayResults(false);
         }
+
+        UserData.instance.currentDay += 1;
     }
 
     public void SignalLaunched()
@@ -142,8 +144,20 @@ public class GameState : MonoBehaviour
 
         Vector2 detectorPos = obstacleDetector.transform.position;
         Vector2 detectorHalfSize = obstacleDetector.GetSize() / 2;
-        float xPos = Random.Range(detectorPos.x - detectorHalfSize.x, detectorPos.x + detectorHalfSize.x);
-        float yPos = Random.Range(Mathf.Max(0, detectorPos.y - detectorHalfSize.y), detectorPos.y + detectorHalfSize.y);
+        Vector2 minimumHalfSize = obstacleDetector.GetMinimumSize() / 2;
+
+        float xPos;
+        do
+        {
+            xPos = Random.Range(detectorPos.x - detectorHalfSize.x, detectorPos.x + detectorHalfSize.x);
+        } while(xPos >= detectorPos.x - minimumHalfSize.x && xPos <= detectorPos.x + minimumHalfSize.x) ;
+
+        float yPos;
+        do
+        {
+            yPos = Random.Range(Mathf.Max(0, detectorPos.y - detectorHalfSize.y), detectorPos.y + detectorHalfSize.y);
+        } while(yPos >= detectorPos.y - minimumHalfSize.y && yPos <= detectorPos.y + minimumHalfSize.y);
+
         obstacle.SetPosition(new Vector2(xPos, yPos));
     }
 
