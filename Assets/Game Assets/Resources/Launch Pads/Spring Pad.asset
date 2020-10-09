@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPadName: Spring
   baseStats:
-    power: 30
+    power: 500
   baseCost: 50
   baseUpgradeStats:
     power: 10

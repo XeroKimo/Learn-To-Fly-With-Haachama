@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd2782bc096c62b4e8fb85c23d93b5b2, type: 3}
-  m_Name: Paper Vehicle
+  m_Name: HappyChaama
   m_EditorClassIdentifier: 
-  vehicleName: Paper Airplane
+  vehicleName: HappyChaama
   baseStats:
-    maximumSpeed: 150
-    weight: 65
-    boosterSlots: 3
-  baseCost: 1000
+    maximumSpeed: 20
+    weight: 45
+    boosterSlots: 1
+  baseCost: 100
   baseUpgradeStats:
-    maximumSpeed: 100
+    maximumSpeed: 10
     weight: 0
     boosterSlots: 0
-  baseUpgradeCost: 500
-  vehiclePrefab: {fileID: 4292134490253461621, guid: 825186fb0b9369541968cb605fbe58b8,
+  baseUpgradeCost: 50
+  vehiclePrefab: {fileID: 1989295618855007781, guid: fa1a837f0e198db4e9687f53fad7fd2d,
     type: 3}
-  displaySprite: {fileID: 21300000, guid: 8e86732da74922649b35cd7417479cf0, type: 3}
+  displaySprite: {fileID: 21300000, guid: e723829b61db01b42a517e278cb98975, type: 3}

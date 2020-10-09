@@ -28,8 +28,8 @@ public class GameLaunchPad : MonoBehaviour
         haachama.transform.parent = null;
         
         haachama.GetComponent<Rigidbody2D>().AddForce(transform.up * stats.power, ForceMode2D.Impulse);
-        //Invoke("SignalLaunched", 1f);
-        GameState.instance.SignalLaunched();
+        Invoke("SignalLaunched", 1f);
+        //GameState.instance.SignalLaunched();
     }
 
     void SignalLaunched()

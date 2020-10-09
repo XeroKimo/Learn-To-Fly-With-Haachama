@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boosterName: Spice Noodles
   baseStats:
-    power: 100
-    fuel: 30
+    power: 50
+    fuel: 4
     weight: 3
   baseCost: 75
   baseUpgradeStats:
     power: 15
-    fuel: 10
+    fuel: 3
     weight: 0
   baseUpgradeCost: 25
   boosterPrefab: {fileID: 7453919882784732011, guid: eabcde34c8c468e4d9cda29528d67629,

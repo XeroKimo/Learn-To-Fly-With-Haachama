@@ -15,7 +15,7 @@ MonoBehaviour:
   vehicleName: Default
   baseStats:
     maximumSpeed: 6
-    weight: 2
+    weight: 45
     boosterSlots: 1
   baseCost: 0
   baseUpgradeStats:
