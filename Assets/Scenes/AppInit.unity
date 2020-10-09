@@ -1130,7 +1130,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Story:
 
-    Haachama is stranded in Austrelia, but wants to go home. Public
+    Haachama is stranded in Australia, but wants to go home. Public
     flights aren''t an option, so she decides to take actions into her own hands.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2578,7 +2578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1685983870
 RectTransform:
   m_ObjectHideFlags: 0

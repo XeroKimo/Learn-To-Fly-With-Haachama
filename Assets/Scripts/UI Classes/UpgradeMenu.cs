@@ -168,29 +168,37 @@ public class UpgradeMenu : MonoBehaviour
         {
         case ShopTag.Vehicle:
             upgradeCost = UserData.instance.currentVehicle.nextLevelCost;
+            if(upgradeCost > UserData.instance.currentMoney)
+                return;
             UserData.instance.currentVehicle.Upgrade();
             break;
         case ShopTag.LaunchPad:
             upgradeCost = UserData.instance.currentLaunchPad.nextLevelCost;
+            if(upgradeCost > UserData.instance.currentMoney)
+                return;
             UserData.instance.currentLaunchPad.Upgrade();
             break;
         case ShopTag.Booster_1:
             upgradeCost = UserData.instance.currentBoosters[0].nextLevelCost;
+            if(upgradeCost > UserData.instance.currentMoney)
+                return;
             UserData.instance.currentBoosters[0].Upgrade();
             break;
         case ShopTag.Booster_2:
             upgradeCost = UserData.instance.currentBoosters[1].nextLevelCost;
+            if(upgradeCost > UserData.instance.currentMoney)
+                return;
             UserData.instance.currentBoosters[1].Upgrade();
             break;
         case ShopTag.Booster_3:
             upgradeCost = UserData.instance.currentBoosters[2].nextLevelCost;
+            if(upgradeCost > UserData.instance.currentMoney)
+                return;
             UserData.instance.currentBoosters[2].Upgrade();
             break;
         }
 
-        if(upgradeCost > UserData.instance.currentMoney)
-            return;
-
+        
         UserData.instance.currentMoney -= upgradeCost;
 
         RefreshDisplay();
