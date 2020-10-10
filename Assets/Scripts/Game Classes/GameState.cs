@@ -31,6 +31,7 @@ public class GameState : MonoBehaviour
 
     ProgressState currentState = ProgressState.Initializing;
 
+    float farthestDistanceTravled;
     //Vector3 newCurrentPosition;
 
     private void Awake()
@@ -70,6 +71,10 @@ public class GameState : MonoBehaviour
     {
         if(currentState == ProgressState.InAir)
         {
+            if(haachama.transform.position.x > farthestDistanceTravled)
+            {
+                farthestDistanceTravled = haachama.transform.position.x;
+            }
             if(HaachamaCrashed() || HaachamaWin() || HaachamaNoProgress())
             {
                 currentState = ProgressState.End;
@@ -194,5 +199,10 @@ public class GameState : MonoBehaviour
     public Player GetPlayer()
     {
         return haachama;
+    }
+
+    public float GetFarthestDistanceTraveled()
+    {
+        return farthestDistanceTravled;
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84118a992df3bdd469054f13886192c1, type: 3}
   m_Name: Spicy Noodles
   m_EditorClassIdentifier: 
-  boosterName: Spice Noodles
+  boosterName: Spicy Noodles
   baseStats:
     power: 700
     fuel: 2

@@ -28,7 +28,7 @@ public class EndDayUI : MonoBehaviour, IPointerClickHandler
         {
             if(!loadingMenu)
             {
-                UserData.instance.currentMoney += Mathf.Max(0, (int)GameState.instance.GetPlayer().transform.position.x);
+                UserData.instance.currentMoney += Mathf.Max(0, (int)GameState.instance.GetFarthestDistanceTraveled());
 
                 SceneManager.LoadScene(1);
                 Time.timeScale = 1;
@@ -48,6 +48,6 @@ public class EndDayUI : MonoBehaviour, IPointerClickHandler
             resultsPanel.SetActive(true);
             resultsDisplayed = true;
         }
-        moneyEarned.text = "$" + ((int)(GameState.instance.GetPlayer().transform.position.x)).ToString();
+        moneyEarned.text = "$" + (Mathf.Max(0, (int)(GameState.instance.GetFarthestDistanceTraveled()))).ToString();
     }
 }

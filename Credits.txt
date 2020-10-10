@@ -3,3 +3,8 @@ Programmer: Saito
 Lead Artists: Peanut
 BGM music: Pizzafari
 Idea People: Sam, Tweety
+
+3rd Party Textures:
+- Australia: https://freepngimg.com/png/24237-australia-map-transparent-image
+- Japan: https://www.pngitem.com/middle/mhmTTb_map-of-japan-png-clipart-png-download-transparent/
+- Haachama Icon: https://yt3.ggpht.com/a/AATXAJw3IoOJZlLAn_Eyy0r6gJHR3vt64XHfuXCailaCPw=s176-c-k-c0x00ffffff-no-rj-mo
