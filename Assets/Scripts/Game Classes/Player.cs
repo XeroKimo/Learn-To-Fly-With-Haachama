@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
             }
         }
         //Some drag equation that doesn't exceed 1, but approaching 1 gets tougher the closer we get to it
+        //SAITO: is it necessary to add drag ? I actually think it's better without it
         float basedSpeed = vehicle.GetStats().maximumSpeed * Constants.metre * 10;
         rb.drag = (1.005f - basedSpeed / (basedSpeed + rb.velocity.magnitude)) * 2;
     }

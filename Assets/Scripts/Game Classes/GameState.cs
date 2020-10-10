@@ -31,11 +31,14 @@ public class GameState : MonoBehaviour
 
     ProgressState currentState = ProgressState.Initializing;
 
+    Vector3 newCurrentPosition;
+
     private void Awake()
     {
         instance = this;
         currentState = ProgressState.Initializing;
         gameObstacles = new List<ObstacleData>(Resources.LoadAll<ObstacleData>("Obstacles"));
+        StartCoroutine(UpdatePosition());
     }
 
     // Start is called before the first frame update
@@ -66,13 +69,13 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentState == ProgressState.InAir)
-        {
-            if(HaachamaCrashed() || HaachamaWin() || HaachamaNoProgress())
-            {
-                EndGame();
-            }
-        }
+        //if(currentState == ProgressState.InAir)
+        //{
+        //    if(HaachamaCrashed() || HaachamaWin() || HaachamaNoProgress())
+        //    {
+        //        EndGame();
+        //    }
+        //}
     }
 
     void Initialize()
@@ -161,9 +164,11 @@ public class GameState : MonoBehaviour
         obstacle.SetPosition(new Vector2(xPos, yPos));
     }
 
+    //don't think it's necessary, HaachamaNoProgress() is doing the same thing
     bool HaachamaCrashed()
     {
-        return haachama.transform.position.y <= 0 && !haachama.HasFuelLeft();
+        //return haachama.transform.position.y <= -10 && !haachama.HasFuelLeft();
+        return false;
     }
 
     bool HaachamaWin()
@@ -171,9 +176,23 @@ public class GameState : MonoBehaviour
         return haachama.transform.position.x >= Constants.distanceToJapan;
     }
 
+    //Change in the condition for when day end
     bool HaachamaNoProgress()
     {
-        return !haachama.HasFuelLeft() && haachama.GetRigidbody().velocity.x < 0.5f;
+        return !haachama.HasFuelLeft() && newCurrentPosition == haachama.transform.position;
+    }
+
+    private IEnumerator UpdatePosition()
+    {
+        while (true)
+        {
+            newCurrentPosition = haachama.transform.position;
+            yield return new WaitForSeconds(1);
+            if (!haachama.HasFuelLeft() && newCurrentPosition == haachama.transform.position)
+            {
+                EndGame();
+            }
+        }
     }
 
     public Player GetPlayer()
