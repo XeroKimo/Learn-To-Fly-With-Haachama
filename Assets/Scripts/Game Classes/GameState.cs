@@ -31,14 +31,14 @@ public class GameState : MonoBehaviour
 
     ProgressState currentState = ProgressState.Initializing;
 
-    Vector3 newCurrentPosition;
+    //Vector3 newCurrentPosition;
 
     private void Awake()
     {
         instance = this;
         currentState = ProgressState.Initializing;
         gameObstacles = new List<ObstacleData>(Resources.LoadAll<ObstacleData>("Obstacles"));
-        StartCoroutine(UpdatePosition());
+        //StartCoroutine(UpdatePosition());
     }
 
     // Start is called before the first frame update
@@ -50,7 +50,6 @@ public class GameState : MonoBehaviour
         if(UserData.instance.currentLaunchPad.launchPad.launchPadName != Constants.defaultLaunchPadName)
         {
             //Call launch
-            Debug.Log("Launched");
             launchPad.Launch(haachama);
         }
         else
@@ -62,20 +61,21 @@ public class GameState : MonoBehaviour
             //haachama.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad)) * launchPad.GetStats().power, ForceMode2D.Impulse);
             Invoke("SignalLaunched", 1f);
 
-            //EditorApplication.isPaused = true;
+
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(currentState == ProgressState.InAir)
-        //{
-        //    if(HaachamaCrashed() || HaachamaWin() || HaachamaNoProgress())
-        //    {
-        //        EndGame();
-        //    }
-        //}
+        if(currentState == ProgressState.InAir)
+        {
+            if(HaachamaCrashed() || HaachamaWin() || HaachamaNoProgress())
+            {
+                currentState = ProgressState.End;
+                Invoke("EndGame", 0.5f);
+            }
+        }
     }
 
     void Initialize()
@@ -101,12 +101,8 @@ public class GameState : MonoBehaviour
         for(int i = 0; i < Constants.maxObstacles; i++)
         {
             //Initialize gameObstacles and activeObstacles
-            GameObstacle obstacle = Instantiate(gameObstacles[Random.Range(0, gameObstacles.Count - 1)].obstaclePrefab);
-
-            float xPos = Random.Range(detectorPos.x - detectorHalfSize.x, detectorPos.x + detectorHalfSize.x);
-            float yPos = Random.Range(Mathf.Max(0, detectorPos.y - detectorHalfSize.y), detectorPos.y + detectorHalfSize.y);
-            yPos = Mathf.Clamp(yPos, 0, float.MaxValue);
-            obstacle.SetPosition(new Vector2(xPos, yPos));
+            GameObstacle obstacle = Instantiate(gameObstacles[0].obstaclePrefab);
+            SignalObstacleOutOfRange(obstacle);
         }
     }
 
@@ -167,8 +163,8 @@ public class GameState : MonoBehaviour
     //don't think it's necessary, HaachamaNoProgress() is doing the same thing
     bool HaachamaCrashed()
     {
-        //return haachama.transform.position.y <= -10 && !haachama.HasFuelLeft();
-        return false;
+        return haachama.transform.position.y <= 0;
+        //return false;
     }
 
     bool HaachamaWin()
@@ -179,21 +175,21 @@ public class GameState : MonoBehaviour
     //Change in the condition for when day end
     bool HaachamaNoProgress()
     {
-        return !haachama.HasFuelLeft() && newCurrentPosition == haachama.transform.position;
+        return !haachama.HasFuelLeft() && haachama.GetRigidbody().velocity.x < 0.1f;
     }
 
-    private IEnumerator UpdatePosition()
-    {
-        while (true)
-        {
-            newCurrentPosition = haachama.transform.position;
-            yield return new WaitForSeconds(1);
-            if (!haachama.HasFuelLeft() && newCurrentPosition == haachama.transform.position)
-            {
-                EndGame();
-            }
-        }
-    }
+    //private IEnumerator UpdatePosition()
+    //{
+    //    while (true)
+    //    {
+    //        newCurrentPosition = haachama.transform.position;
+    //        yield return new WaitForSeconds(1);
+    //        if (!haachama.HasFuelLeft() && newCurrentPosition == haachama.transform.position)
+    //        {
+    //            EndGame();
+    //        }
+    //    }
+    //}
 
     public Player GetPlayer()
     {

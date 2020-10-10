@@ -55,6 +55,7 @@ public class ShopMenu : MonoBehaviour
         {
             boosterSlots[i].UpdateData(UserData.instance.currentBoosters[i]);
         }
+        dayText.text = "Day " + UserData.instance.currentDay;
         NotifyChangesMade();
     }
 
