@@ -69,12 +69,12 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(haachama.transform.position.x > farthestDistanceTravled)
+        {
+            farthestDistanceTravled = haachama.transform.position.x;
+        }
         if(currentState == ProgressState.InAir)
         {
-            if(haachama.transform.position.x > farthestDistanceTravled)
-            {
-                farthestDistanceTravled = haachama.transform.position.x;
-            }
             if(HaachamaCrashed() || HaachamaWin() || HaachamaNoProgress())
             {
                 currentState = ProgressState.End;
@@ -144,7 +144,7 @@ public class GameState : MonoBehaviour
 
     public void SignalObstacleOutOfRange(GameObstacle obstacle)
     {
-        obstacle.SetObstacle(gameObstacles[Random.Range(0, gameObstacles.Count - 1)].obstaclePrefab);
+        obstacle.SetObstacle(gameObstacles[Random.Range(0, gameObstacles.Count)].obstaclePrefab);
 
         Vector2 detectorPos = obstacleDetector.transform.position;
         Vector2 detectorHalfSize = obstacleDetector.GetSize() / 2;

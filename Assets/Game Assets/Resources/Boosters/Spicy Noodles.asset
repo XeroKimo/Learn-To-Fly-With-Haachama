@@ -15,11 +15,11 @@ MonoBehaviour:
   boosterName: Spicy Noodles
   baseStats:
     power: 700
-    fuel: 2
+    fuel: 2.5
     weight: 2
   baseCost: 50
   baseUpgradeStats:
-    power: 50
+    power: 35
     fuel: 0.25
     weight: 0
   baseUpgradeCost: 100

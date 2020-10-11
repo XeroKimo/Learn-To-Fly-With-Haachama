@@ -15,7 +15,7 @@ MonoBehaviour:
   vehicleName: Noodle Cart
   baseStats:
     maximumSpeed: 10
-    weight: 55
+    weight: 50
     boosterSlots: 1
   baseCost: 100
   baseUpgradeStats:
