@@ -39,6 +39,17 @@ public class Player : MonoBehaviour
 
             if(!activeBooster.HasFuel())
             {
+                Transform[] allChildren = activeBooster.GetComponentsInChildren<Transform>();
+                foreach (Transform child in allChildren)
+                {
+                    if (!child.name.Contains("Clone"))
+                    {
+                        Debug.Log(child.name);
+                        child.parent = null;
+                        child.GetComponent<ParticleSystem>().Stop();
+                    }
+
+                }
                 activeBooster.gameObject.SetActive(false);
                 rb.mass -= activeBooster.GetStats().weight;
                 activeBooster = GetNextBooster();
