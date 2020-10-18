@@ -12,6 +12,8 @@ public class GameObstacle : MonoBehaviour
     private Rigidbody2D rigidBody;
     [SerializeField]
     private SpriteRenderer sprite;
+    [SerializeField]
+    private AudioSource source;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,6 +36,8 @@ public class GameObstacle : MonoBehaviour
         boxCollider.size = (newObstacle.boxCollider) ? newObstacle.boxCollider.size : newObstacle.GetComponent<BoxCollider2D>().size;
         rigidBody.mass = (newObstacle.rigidBody) ? newObstacle.rigidBody.mass : newObstacle.GetComponent<Rigidbody2D>().mass;
         sprite.sprite = (newObstacle.sprite) ? newObstacle.sprite.sprite : newObstacle.GetComponentInChildren<SpriteRenderer>().sprite;
+        source.clip = (newObstacle.source) ? newObstacle.source.clip : newObstacle.GetComponentInChildren<AudioSource>().clip;
+        source.volume = 0.5f;
 
         rigidBody.angularVelocity = 0;
         rigidBody.velocity = Vector3.zero;
@@ -61,13 +65,19 @@ public class GameObstacle : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
-            Invoke("SignalOutOfRange", 0.1f);
+        if (collision.gameObject.tag == "Player")
+        {
+            //FindObjectOfType<AudioManager>().Play(this.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite.name);
+            if (this.transform.GetChild(0).GetComponent<AudioSource>())
+            {
+                this.transform.GetChild(0).GetComponent<AudioSource>().Play();
+            }
+            Invoke("SignalOutOfRange", 1f);
+        }
     }
 
     void SignalOutOfRange()
     {
         GameState.instance.SignalObstacleOutOfRange(this);
-
     }
 }

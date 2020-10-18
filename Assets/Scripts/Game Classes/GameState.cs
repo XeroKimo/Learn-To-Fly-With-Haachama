@@ -39,7 +39,6 @@ public class GameState : MonoBehaviour
         instance = this;
         currentState = ProgressState.Initializing;
         gameObstacles = new List<ObstacleData>(Resources.LoadAll<ObstacleData>("Obstacles"));
-        //StartCoroutine(UpdatePosition());
     }
 
     // Start is called before the first frame update
@@ -57,7 +56,6 @@ public class GameState : MonoBehaviour
         {
             haachama.enabled = true;
 
-            //Debug.LogWarning("Testing launching of Haachama");
             //int degree = 45;
             //haachama.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad)) * launchPad.GetStats().power, ForceMode2D.Impulse);
             Invoke("SignalLaunched", 1f);
@@ -144,6 +142,7 @@ public class GameState : MonoBehaviour
 
     public void SignalObstacleOutOfRange(GameObstacle obstacle)
     {
+
         obstacle.SetObstacle(gameObstacles[Random.Range(0, gameObstacles.Count)].obstaclePrefab);
 
         Vector2 detectorPos = obstacleDetector.transform.position;
@@ -165,11 +164,9 @@ public class GameState : MonoBehaviour
         obstacle.SetPosition(new Vector2(xPos, yPos));
     }
 
-    //don't think it's necessary, HaachamaNoProgress() is doing the same thing
     bool HaachamaCrashed()
     {
         return haachama.transform.position.y <= 0;
-        //return false;
     }
 
     bool HaachamaWin()
@@ -182,19 +179,6 @@ public class GameState : MonoBehaviour
     {
         return !haachama.HasFuelLeft() && haachama.GetRigidbody().velocity.x < 0.1f;
     }
-
-    //private IEnumerator UpdatePosition()
-    //{
-    //    while (true)
-    //    {
-    //        newCurrentPosition = haachama.transform.position;
-    //        yield return new WaitForSeconds(1);
-    //        if (!haachama.HasFuelLeft() && newCurrentPosition == haachama.transform.position)
-    //        {
-    //            EndGame();
-    //        }
-    //    }
-    //}
 
     public Player GetPlayer()
     {

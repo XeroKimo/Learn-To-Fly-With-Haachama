@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     {
         foreach (Sound s in sounds)
         {
-            gameObject.GetComponent<AudioSource>();
+            s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.name = s.name;
             s.source.volume = s.volume;
@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    void Play(string name)
+    public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();

@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
                 {
                     if (!child.name.Contains("Clone"))
                     {
-                        Debug.Log(child.name);
                         child.parent = null;
                         child.GetComponent<ParticleSystem>().Stop();
                     }
